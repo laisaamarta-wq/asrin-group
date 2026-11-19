@@ -1,0 +1,94 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "",
+  "outputDirectory": "dist",
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/index.php",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/sayfa/:slug*",
+      "destination": "/tr/kurumsal/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/kadromuz",
+      "destination": "/tr/kurumsal/#team",
+      "permanent": true
+    },
+    {
+      "source": "/tr/projeler/planlanmis-projeler-87",
+      "destination": "/tr/projeler/#planned",
+      "permanent": true
+    },
+    {
+      "source": "/tr/projeler/yapimda-olan-projeler-95",
+      "destination": "/tr/projeler/#building",
+      "permanent": true
+    },
+    {
+      "source": "/tr/projeler/tamamlanmis-projeler-97",
+      "destination": "/tr/projeler/#completed",
+      "permanent": true
+    },
+    {
+      "source": "/tr/proje/asrin-city-gazipasa-98",
+      "destination": "/tr/projeler/asrin-city-gazipasa/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/proje/asrin10-11finish-on-2017-99",
+      "destination": "/tr/projeler/asrin-10-11/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/proje/special-villa-s-100",
+      "destination": "/tr/projeler/special-villas/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/proje/asrin-town-15-finished-02-01-2020-96",
+      "destination": "/tr/projeler/asrin-town-15/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/proje/asrin-7-8-finished-on-2015-97",
+      "destination": "/tr/projeler/asrin-7-8/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/galeri/:slug",
+      "destination": "/tr/galeri/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}
