@@ -454,6 +454,16 @@
         .to({}, { duration: .15 });
     }
     // portfolio: stacking cards, the one underneath recedes
+    // bridge: a rounded window opens onto the sea view, the line rises
+    const brg = $('[data-brg]');
+    if (brg && w.innerWidth > 1024) {
+      gsap.timeline({ scrollTrigger: { trigger: brg, start: 'top top', end: 'bottom bottom', scrub: 1 } })
+        .fromTo('[data-brg-win]', { clipPath: 'inset(32% 36% 32% 36% round 400px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'power2.inOut', duration: .6 }, 0)
+        .fromTo('[data-brg-win] img', { scale: 1.3 }, { scale: 1, ease: 'none', duration: 1 }, 0)
+        .fromTo('[data-brg-line]', { yPercent: 60, opacity: 0, letterSpacing: '.04em' }, { yPercent: 0, opacity: 1, letterSpacing: '-.02em', ease: 'power3.out', duration: .45 }, .3)
+        .fromTo('[data-brg-sub]', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .3 }, .55)
+        .to({}, { duration: .2 });
+    }
     // background colour follows the section
     $$('[data-bg]').forEach((sec) => ST.create({ trigger: sec, start: 'top 55%', end: 'bottom 55%', onToggle: (s) => { if (s.isActive) body.dataset.bgc = sec.dataset.bg; } }));
 
@@ -492,7 +502,7 @@
 /* v4: in-view classes, ethos cursor image, mobile amenity autoplay */
 (() => {
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add(e.target.dataset.inClass || 'is-in'); io.unobserve(e.target); } }), { threshold: .15 });
-  document.querySelectorAll('.mf__media, [data-lagoon-frame]').forEach((el) => io.observe(el));
+  document.querySelectorAll('.mf__media, [data-lagoon-frame], [data-brg]').forEach((el) => io.observe(el));
   document.querySelectorAll('[data-acx]').forEach((el) => { el.dataset.inClass = 'is-drawn'; io.observe(el); });
 
   const fl = document.querySelector('[data-ethos-float]');

@@ -227,6 +227,14 @@ ${amenSection(lang)}
   <div class="ethos2__float" data-ethos-float aria-hidden="true">${['city-detail', 'city-pool', 'ac-blue'].map((n, i) => `<figure data-ef="${i}">${img(n, lang, { sizes: '22vw', alt: '' })}</figure>`).join('')}</div>
 </section>
 
+<section class="brg" data-theme="dark" data-brg aria-label="${esc(tx(L('Gazipaşa\'da evinize ilk adım', 'Your first step to a home in Gazipaşa', 'Первый шаг к дому в Газипаше'), lang))}">
+  <div class="brg__pin">
+    <div class="brg__win" data-brg-win>${img('ac-balcony', lang, { sizes: '100vw', alt: tx(L('Asrin City balkonundan Akdeniz manzarası', 'The Mediterranean seen from an Asrin City balcony', 'Вид на Средиземное море с балкона Asrin City'), lang) })}<span class="brg__shade"></span></div>
+    <p class="brg__line" data-brg-line>${tx(L('Bu manzara <em>sizin olabilir.</em>', 'This view <em>could be yours.</em>', 'Этот вид <em>может быть вашим.</em>'), lang)}</p>
+    <p class="brg__sub" data-brg-sub>${tx(L('4. kattan itibaren — Asrin City Gazipaşa', 'From the 4th floor up — Asrin City Gazipaşa', 'С 4-го этажа и выше — Asrin City Gazipaşa'), lang)}</p>
+  </div>
+</section>
+
 ${contactSection(lang, { project: city.slug, bg: 'ac-balcony' })}`;
 
   return page({ lang, route: 'home', title: tx(PAGES.home.title, lang), desc: tx(PAGES.home.meta, lang), body, current: 'home', ogImage: 'ac-hero', bodyClass: 'is-home' });

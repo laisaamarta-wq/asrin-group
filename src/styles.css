@@ -1630,3 +1630,27 @@ strong { font-weight: 600; }
 @media (max-width: 1024px) { .gz__word { top: 0 !important; } }
 @media (max-width: 760px) { .hx__frame { height: min(58svh, calc(100svh - 330px)); } }
 @media (max-width: 760px) { .masonry { columns: 2 !important; column-gap: 6px; } .masonry > * { margin-bottom: 6px; } }
+/* ---------- bridge: ethos → contact, a window opens onto the sea view ---------- */
+.ethos2 { padding-bottom: calc(var(--sec) * .5); }
+.brg { position: relative; height: 210svh; background: var(--navy-950); color: var(--ivory-50); }
+.brg__pin { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; place-items: center; text-align: center; }
+.brg__win { position: absolute; inset: 0; clip-path: inset(32% 36% 32% 36% round 400px); will-change: clip-path; }
+.brg__win img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.3); will-change: transform; }
+.brg__shade { position: absolute; inset: 0; background: radial-gradient(70% 60% at 50% 55%, rgba(6, 18, 32, .45), rgba(6, 18, 32, .15) 70%), linear-gradient(180deg, rgba(6, 18, 32, .25), transparent 30%, transparent 70%, var(--navy-950)); }
+.brg__line { position: relative; z-index: 2; font-family: var(--serif); font-weight: 300; font-size: clamp(2.6rem, 1.4rem + 4.4vw, 6.4rem); line-height: 1; letter-spacing: -.02em; text-shadow: 0 8px 40px rgba(6, 18, 32, .55); padding-inline: var(--pad); }
+.brg__line em { font-style: italic; color: var(--champagne); }
+.brg__sub { position: absolute; z-index: 2; left: 0; right: 0; bottom: clamp(2.4rem, 8vh, 5rem); font-size: .72rem; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: rgba(251, 248, 242, .85); }
+.contact { margin-top: -1px; }
+@media (max-width: 1024px) {
+  .brg { height: auto; padding: calc(var(--sec) * .4) 0; }
+  .brg__pin { position: relative; height: 72svh; margin: 0 1.25rem; border-radius: 20px; }
+  .brg__win { clip-path: inset(14% 18% 14% 18% round 200px); transition: clip-path 1.6s var(--ease-io); }
+  .brg__win img { transform: scale(1.15); transition: transform 2.4s var(--ease); }
+  .brg.is-in .brg__win { clip-path: inset(0 round 20px); }
+  .brg.is-in .brg__win img { transform: scale(1); }
+  .brg__line { font-size: clamp(2.3rem, 10vw, 3.6rem); opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease) .6s, transform 1.2s var(--ease) .6s; }
+  .brg.is-in .brg__line { opacity: 1; transform: none; }
+  .brg__sub { font-size: .6rem; letter-spacing: .2em; }
+}
+.no-motion .brg { height: auto; } .no-motion .brg__pin { position: relative; } .no-motion .brg__win { clip-path: none; }
+.brg__shade { background: radial-gradient(60% 45% at 50% 50%, rgba(6, 18, 32, .62), rgba(6, 18, 32, .2) 75%), linear-gradient(180deg, rgba(6, 18, 32, .3), transparent 30%, transparent 70%, var(--navy-950)) !important; }
