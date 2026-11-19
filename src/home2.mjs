@@ -17,7 +17,7 @@ export function homePage2(lang, { contactSection }) {
   const others = PROJECTS.filter((p) => !p.flagship);
   const lagoon = PROJECTS.find((p) => p.slug === 'blue-lagoon-village');
   const reel = ['ac-hero', 'ac-road', 'city-detail', 'ac-pool-gold', 'ac-lookup', 'ac-vertical-gold', 'ac-topdown-gold', 'city-pool', 'ac-blue'];
-  const words = tx(HOME2.manifesto, lang).split(' ').map((w) => `<span class="mw">${w}</span>`).join(' ');
+  const words = (() => { let key = false; return tx(HOME2.manifesto, lang).split(' ').map((w) => { if (w.startsWith('[[')) { key = true; w = w.slice(2); } const end = w.includes(']]'); w = w.replace(']]', ''); const out = `<span class="mw${key ? ' mw--key' : ''}">${w}</span>`; if (end) key = false; return out; }).join(' '); })();
 
   const body = `
 <div class="loader" data-loader aria-hidden="true">
@@ -29,10 +29,11 @@ export function homePage2(lang, { contactSection }) {
 <section class="hx" data-theme="dark" data-hx>
   <div class="hx__frame" data-hx-frame>
     <picture class="hx__pic" data-hx-pic>
-      <source media="(max-width: 760px) and (orientation: portrait)" srcset="${srcset('ac-hero-v')}" sizes="100vw">
+      <source media="(max-width: 760px) and (orientation: portrait)" srcset="${srcset('ac-hero-m')}" sizes="100vw">
       ${img('ac-hero', lang, { sizes: '100vw', eager: true, cls: 'hx__img', alt: tx(L('Asrin City Gazipaşa konut kulesi, Toros dağları önünde gün batımında', 'The Asrin City Gazipaşa residential tower at sunset, in front of the Taurus mountains', 'Жилая башня Asrin City Gazipaşa на закате на фоне гор Тавра'), lang) })}
     </picture>
     <div class="hx__sun" aria-hidden="true" data-hx-sun></div>
+    <p class="hx__badge" aria-hidden="true"><i></i>Asrin City · Gazipaşa</p>
     <div class="hx__shade" aria-hidden="true"></div>
   </div>
   <div class="hx__content wrap" data-hx-content>
@@ -266,7 +267,7 @@ export function amenSection(lang) {
   return `<section class="amn" data-theme="dark" data-amn>
   <div class="amn__pin">
     <div class="amn__stage">
-      ${HOME2.hotspots.map((h, i) => `<div class="amn__layer${i === 0 ? ' is-on' : ''}" data-layer="${h.k}">${img(({ pool: 'ac-pool-gold', play: 'amn-play', gazebo: 'amn-gazebo', court: 'amn-court', parking: 'city-gate' })[h.k], lang, { sizes: '(max-width: 1024px) 100vw, 62vw', alt: tx(caps[h.k], lang) })}</div>`).join('')}
+      ${HOME2.hotspots.map((h, i) => `<div class="amn__layer${i === 0 ? ' is-on' : ''}" data-layer="${h.k}">${img(({ pool: 'ac-pool-gold', play: 'amn-play', gazebo: 'amn-gazebo', court: 'amn-court', parking: 'city-gate' })[h.k], lang, { sizes: '(max-width: 1024px) 100vw, 62vw', alt: tx(caps[h.k], lang), attrs: 'data-eager' })}</div>`).join('')}
       <div class="amn__hud">
         <span class="amn__count"><b data-amn-n>01</b> / 0${HOME2.hotspots.length}</span>
         <p class="amn__cap" data-amn-cap aria-live="polite">${tx(caps[HOME2.hotspots[0].k], lang)}</p>

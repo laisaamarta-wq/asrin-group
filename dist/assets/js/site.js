@@ -443,7 +443,7 @@
     });
     // Gazipaşa: the word opens into a window onto the bay
     const gz = $('[data-gz]');
-    if (gz) {
+    if (gz && w.innerWidth > 1024) {
       const mob = w.innerWidth < 761;
       gsap.timeline({ scrollTrigger: { trigger: gz, start: 'top top', end: 'bottom bottom', scrub: 1 } })
         .fromTo('[data-gz-window]', { clipPath: mob ? 'inset(38% 22% 38% 22% round 300px)' : 'inset(34% 38% 34% 38% round 300px)' }, { clipPath: mob ? 'inset(4% 4% 4% 4% round 4px)' : 'inset(7% 5% 7% 5% round 4px)', ease: 'power2.inOut', duration: .55 }, 0)
@@ -454,11 +454,6 @@
         .to({}, { duration: .15 });
     }
     // portfolio: stacking cards, the one underneath recedes
-    const cards = $$('[data-stack]');
-    cards.forEach((c, i) => {
-      const next = cards[i + 1]; if (!next) return;
-      gsap.to($('.pf__link', c), { scale: .92, filter: 'brightness(.86)', ease: 'none', scrollTrigger: { trigger: next, start: 'top 75%', end: 'top 15%', scrub: true } });
-    });
     // background colour follows the section
     $$('[data-bg]').forEach((sec) => ST.create({ trigger: sec, start: 'top 55%', end: 'bottom 55%', onToggle: (s) => { if (s.isActive) body.dataset.bgc = sec.dataset.bg; } }));
 
@@ -496,7 +491,7 @@
 
 /* v4: in-view classes, ethos cursor image, mobile amenity autoplay */
 (() => {
-  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add(e.target.dataset.inClass || 'is-in'); io.unobserve(e.target); } }), { threshold: .35 });
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add(e.target.dataset.inClass || 'is-in'); io.unobserve(e.target); } }), { threshold: .15 });
   document.querySelectorAll('.mf__media, [data-lagoon-frame]').forEach((el) => io.observe(el));
   document.querySelectorAll('[data-acx]').forEach((el) => { el.dataset.inClass = 'is-drawn'; io.observe(el); });
 

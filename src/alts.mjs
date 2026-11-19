@@ -68,6 +68,7 @@ Object.assign(ALT, {
   'amn-court': L('Asrin City spor sahası, yukarıdan', 'The Asrin City sports court from above', 'Спортплощадка Asrin City сверху'),
   'ac-hero-v': L('Asrin City ve Toros dağları, havadan', 'Asrin City and the Taurus mountains from the air', 'Asrin City и горы Тавра с высоты'),
   'bl-villas-hq': L('Blue Lagoon Village villaları ve havuzu, havadan', 'Blue Lagoon Village villas and pool from the air', 'Виллы и бассейн Blue Lagoon Village с высоты'),
+  'ac-hero-m': L('Asrin City ve Toros dağları, havadan', 'Asrin City and the Taurus mountains from the air', 'Asrin City и горы Тавра с высоты'),
   'ac-sunset': L('Asrin City, Toros dağları ardında gün batımında', 'Asrin City at sunset, the Taurus mountains behind', 'Asrin City на закате на фоне гор Тавра'),
   'ac-sunset-v': L('Asrin City ve Toros dağları, gün batımında', 'Asrin City and the Taurus mountains at sunset', 'Asrin City и горы Тавра на закате'),
   'ac-golden': L('Asrin City, altın saatte', 'Asrin City at golden hour', 'Asrin City в золотой час'),

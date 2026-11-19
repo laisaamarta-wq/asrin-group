@@ -149,9 +149,9 @@ export const PROJECTS = [
       'Современный жилой комплекс с бассейном, ландшафтным садом и видом на море с 4-го этажа.'
     ),
     intro: L(
-      'Deniz, güneş ve doğa manzarasıyla çevrili 5.000 m² arsa üzerinde modern bir yaşam kompleksi. Yaklaşık 900 m² yapı alanı bulunan projede geri kalan alan yeşil alan ve parklara ayrıldı. 4. kat ve üzerindeki daireler deniz manzaralıdır.',
-      'A modern residential complex on a 5,000 m² plot surrounded by sea, sun and nature. Around 900 m² of the site is built; the rest is given to green space and parks. Apartments from the 4th floor up enjoy sea views.',
-      'Современный жилой комплекс на участке 5 000 м², окружённом морем, солнцем и природой. Под застройку отведено около 900 м², остальное — зелёные зоны и парки. Из квартир начиная с 4-го этажа открывается вид на море.'
+      'Deniz, güneş ve doğa manzarasıyla çevrili <strong>5.000 m² arsa</strong> üzerinde modern bir yaşam kompleksi. Yaklaşık 900 m² yapı alanı bulunan projede geri kalan alan yeşil alan ve parklara ayrıldı. <strong>4. kat ve üzerindeki daireler deniz manzaralıdır.</strong>',
+      'A modern residential complex on a <strong>5,000 m² plot</strong> surrounded by sea, sun and nature. Around 900 m² of the site is built; the rest is given to green space and parks. <strong>Apartments from the 4th floor up enjoy sea views.</strong>',
+      'Современный жилой комплекс на <strong>участке 5 000 м²</strong>, окружённом морем, солнцем и природой. Под застройку отведено около 900 м², остальное — зелёные зоны и парки. <strong>Из квартир начиная с 4-го этажа открывается вид на море.</strong>'
     ),
     gallery: ['ac-hero', 'ac-sunset-v', 'ac-sunset', 'ac-golden', 'ac-blue', 'ac-road', 'ac-lookup', 'ac-pool-gold', 'ac-topdown-gold', 'ac-vertical-gold', 'city-hero', 'city-dusk', 'city-detail', 'city-pool', 'city-topdown', 'city-drone-front', 'city-drone-pool', 'city-drone-road', 'city-palm'],
   },
@@ -170,9 +170,9 @@ export const PROJECTS = [
       'Три дома на зелёном склоне, семь номеров, бассейн над морем и своя лагуна в 300 метрах ниже.'
     ),
     intro: L(
-      'Gazipaşa\'nın hemen dışında, muz teraslarıyla çevrili yeşil bir yamaçta üç krem rengi ev. Yedi oda, denizin üzerinde bir havuz ve 300 metre aşağıda kendine ait küçük bir lagün.',
-      'Just outside Gazipaşa, three cream houses stand on a green hillside among banana terraces. Seven rooms, one pool above the sea and a small lagoon of its own, 300 m below.',
-      'Сразу за Газипашей, на зелёном склоне среди банановых террас, стоят три светлых дома. Семь номеров, бассейн над морем и собственная маленькая лагуна в 300 метрах ниже.'
+      'Gazipaşa\'nın hemen dışında, muz teraslarıyla çevrili yeşil bir yamaçta üç krem rengi ev. <strong>Yedi oda, denizin üzerinde bir havuz</strong> ve 300 metre aşağıda kendine ait küçük bir lagün.',
+      'Just outside Gazipaşa, three cream houses stand on a green hillside among banana terraces. <strong>Seven rooms, one pool above the sea</strong> and a small lagoon of its own, 300 m below.',
+      'Сразу за Газипашей, на зелёном склоне среди банановых террас, стоят три светлых дома. <strong>Семь номеров, бассейн над морем</strong> и собственная маленькая лагуна в 300 метрах ниже.'
     ),
     gallery: ['bl-approach', 'bl-villas-aerial', 'bl-coast-aerial', 'bl-pool-sunset', 'bl-pool-sea', 'bl-villa-garden', 'bl-lagoon-topdown', 'bl-lagoon-stairs', 'bl-rock-view', 'bl-terrace-sunset', 'bl-retreat-terrace', 'bl-romantic-room', 'bl-room-sea-wide', 'bl-room-terrace-view', 'bl-room-view', 'bl-twin-room'],
   },
@@ -347,9 +347,9 @@ export const LAGOON = {
 export const GAZIPASA = {
   title: L('Gazipaşa — <em>huzurlu bir Akdeniz cenneti.</em>', 'Gazipaşa — <em>a peaceful Mediterranean paradise.</em>', 'Газипаша — <em>спокойный средиземноморский рай.</em>'),
   body: L(
-    'Antalya kıyısının doğu ucunda, kendi havalimanı, haftalık pazarı ve kayalıklardaki Roma kalıntılarıyla küçük bir sahil kasabası. Toros dağları ile deniz arasında, 1999\'dan beri evimiz.',
-    'A small town at the eastern end of the Antalya coast, with its own airport, a weekly market and Roman ruins on the cliffs. Between the Taurus mountains and the sea — our home since 1999.',
-    'Небольшой город на восточной оконечности побережья Антальи — со своим аэропортом, еженедельным рынком и римскими руинами на скалах. Между горами Тавра и морем — наш дом с 1999 года.'
+    'Antalya kıyısının doğu ucunda, <strong>kendi havalimanı</strong>, haftalık pazarı ve kayalıklardaki Roma kalıntılarıyla küçük bir sahil kasabası. Toros dağları ile deniz arasında, <strong>1999\'dan beri evimiz.</strong>',
+    'A small town at the eastern end of the Antalya coast, with <strong>its own airport</strong>, a weekly market and Roman ruins on the cliffs. Between the Taurus mountains and the sea — <strong>our home since 1999.</strong>',
+    'Небольшой город на восточной оконечности побережья Антальи — <strong>со своим аэропортом</strong>, еженедельным рынком и римскими руинами на скалах. Между горами Тавра и морем — <strong>наш дом с 1999 года.</strong>'
   ),
   album: ['gz-bay-sunset', 'gz-coves-sunset', 'gazipasa-coast', 'gazipasa-01', 'gazipasa-02', 'gazipasa-03', 'gazipasa-04', 'gazipasa-05', 'gazipasa-06', 'gazipasa-07', 'gazipasa-08', 'gazipasa-09'],
 };
@@ -377,9 +377,9 @@ export const ABOUT = {
     'Мы ведём проект на всех этапах — от разработки до сдачи «под ключ» — и стремимся превзойти собственные стандарты качества. Наша цель — строить надёжные и красивые дома, в которых приятно жить.'
   ),
   p4: L(
-    'ASRIN İNŞAAT yalnızca yaşam alanları inşa etmiyor; yaşam standartlarını yükselterek kalıcı bir fark yaratmayı amaçlıyor.',
-    'ASRIN İNŞAAT does not only build living spaces — it sets out to raise living standards and make a lasting difference.',
-    'ASRIN İNŞAAT не просто строит дома — мы стремимся повышать качество жизни и оставлять долгий след.'
+    'ASRIN İNŞAAT yalnızca yaşam alanları inşa etmiyor; <strong>yaşam standartlarını yükselterek kalıcı bir fark</strong> yaratmayı amaçlıyor.',
+    'ASRIN İNŞAAT does not only build living spaces — it sets out to <strong>raise living standards and make a lasting difference</strong>.',
+    'ASRIN İNŞAAT не просто строит дома — мы стремимся <strong>повышать качество жизни</strong> и оставлять долгий след.'
   ),
   teamTitle: L('Kadromuz', 'Our team', 'Наша команда'),
   teamBody: L(
@@ -536,9 +536,9 @@ export const HOME = {
   contactEyebrow: L('İletişim', 'Contact', 'Контакты'),
   contactTitle: L('Geleceğin evini <em>birlikte bulalım.</em>', 'Let\'s find your future home <em>together.</em>', 'Давайте вместе найдём <em>ваш будущий дом.</em>'),
   contactText: L(
-    'Bize telefon, WhatsApp veya e-posta üzerinden kolayca ulaşabilirsiniz. Bilgi ve talepleriniz için hemen bizi arayın.',
-    'You can reach us easily by phone, WhatsApp or email. Call us with any question or request.',
-    'С нами легко связаться по телефону, WhatsApp или e-mail. Звоните — ответим на любые вопросы.'
+    'Bize <strong>telefon, WhatsApp veya e-posta</strong> üzerinden kolayca ulaşabilirsiniz. Bilgi ve talepleriniz için hemen bizi arayın.',
+    'You can reach us easily by <strong>phone, WhatsApp or email</strong>. Call us with any question or request.',
+    'С нами легко связаться <strong>по телефону, WhatsApp или e-mail</strong>. Звоните — ответим на любые вопросы.'
   ),
 };
 
@@ -607,16 +607,16 @@ export const HOME2 = {
   kicker: L('ASRIN GROUP sunar', 'ASRIN GROUP presents', 'ASRIN GROUP представляет'),
   title: L('Dağlar ile deniz <em>arasında bir yaşam.</em>', 'A life between <em>the mountains and the sea.</em>', 'Жизнь <em>между горами и&nbsp;морем.</em>'),
   sub: L(
-    'Asrin City Gazipaşa — Toros dağları ile Akdeniz arasında, havuzlu ve peyzajlı bahçeli modern yaşam kompleksi. 1990\'dan beri Avrupa standartlarında inşa eden ASRIN GROUP imzasıyla.',
-    'Asrin City Gazipaşa — a modern residential complex with pool and landscaped gardens between the Taurus mountains and the Mediterranean. Built by ASRIN GROUP, to European standards since 1990.',
-    'Asrin City Gazipaşa — современный жилой комплекс с бассейном и ландшафтным садом между горами Тавра и Средиземным морем. От ASRIN GROUP, которая строит по европейским стандартам с 1990 года.'
+    'Asrin City Gazipaşa — Toros dağları ile Akdeniz arasında, <strong>havuzlu ve peyzajlı bahçeli</strong> modern yaşam kompleksi. 1990\'dan beri <strong>Avrupa standartlarında</strong> inşa eden ASRIN GROUP imzasıyla.',
+    'Asrin City Gazipaşa — a modern residential complex with <strong>pool and landscaped gardens</strong> between the Taurus mountains and the Mediterranean. Built by ASRIN GROUP, <strong>to European standards since 1990</strong>.',
+    'Asrin City Gazipaşa — современный жилой комплекс <strong>с бассейном и ландшафтным садом</strong> между горами Тавра и Средиземным морем. От ASRIN GROUP, которая строит <strong>по европейским стандартам с 1990 года</strong>.'
   ),
   chips: [L('1+1 — Penthouse', '1+1 — Penthouse', '1+1 — пентхаус'), L('Havalimanına 5 km', '5 km to the airport', '5 км до аэропорта'), L('4. kattan deniz manzarası', 'Sea views from the 4th floor', 'Вид на море с 4-го этажа')],
   manifestoEyebrow: L('ASRIN GROUP · 1990', 'ASRIN GROUP · 1990', 'ASRIN GROUP · 1990'),
   manifesto: L(
-    '1990\'da Hollanda\'da kurulduk, 1999\'dan beri Gazipaşa\'da inşa ediyoruz. Güven, estetik ve dayanıklılık: her projede aynı söz — içinde yaşamaktan keyif alınan, uzun ömürlü evler.',
-    'Founded in the Netherlands in 1990, building in Gazipaşa since 1999. Trust, aesthetics and durability: one promise in every project — lasting homes that are a joy to live in.',
-    'Основаны в Нидерландах в 1990 году, строим в Газипаше с 1999-го. Доверие, эстетика и долговечность: одно обещание в каждом проекте — надёжные дома, в которых приятно жить.'
+    '1990\'da Hollanda\'da kurulduk, 1999\'dan beri Gazipaşa\'da inşa ediyoruz. [[Güven, estetik ve dayanıklılık:]] her projede aynı söz — içinde yaşamaktan keyif alınan, uzun ömürlü evler.',
+    'Founded in the Netherlands in 1990, building in Gazipaşa since 1999. [[Trust, aesthetics and durability:]] one promise in every project — lasting homes that are a joy to live in.',
+    'Основаны в Нидерландах в 1990 году, строим в Газипаше с 1999-го. [[Доверие, эстетика и долговечность:]] одно обещание в каждом проекте — надёжные дома, в которых приятно жить.'
   ),
   lapseEyebrow: L('Asrin City · bir gün', 'Asrin City · one day', 'Asrin City · один день'),
   lapseTitle: L('Günün en güzel saatleri — <em>her gün.</em>', 'The finest hours of the day — <em>every day.</em>', 'Лучшие часы дня — <em>каждый день.</em>'),

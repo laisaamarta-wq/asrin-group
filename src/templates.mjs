@@ -27,7 +27,7 @@ export function img(name, lang, { sizes = '100vw', cls = '', eager = false, alt,
   const srcset = m.widths.map((w) => `/assets/img/${name}-${w}.webp ${w}w`).join(', ');
   const src = `/assets/img/${name}-${m.widths[Math.min(1, m.widths.length - 1)]}.webp`;
   const a = alt ?? tx(ALT[name], lang) ?? '';
-  return `<img class="${cls}" src="${src}" srcset="${srcset}" sizes="${sizes}" width="${m.w}" height="${m.h}" alt="${esc(a)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" ${attrs}>`;
+  return `<img class="${cls}" src="${src}" srcset="${srcset}" sizes="${sizes}" width="${m.w}" height="${m.h}" alt="${esc(a)}" ${eager ? 'fetchpriority="high"' : (attrs.includes('data-eager') ? '' : 'loading="lazy"')} decoding="async" ${attrs}>`;
 }
 const full = (name) => { const m = IMG[name]; return `/assets/img/${name}-${m.widths[m.widths.length - 1]}.webp`; };
 
@@ -51,21 +51,21 @@ function head({ lang, title, desc, path, alternates, ogImage = 'ac-hero', jsonld
     address: { '@type': 'PostalAddress', streetAddress: 'Pazarcı Mah. Uğur Mumcu Cad. Asrın Apt. 101/1', addressLocality: 'Gazipaşa', addressRegion: 'Antalya', postalCode: '07900', addressCountry: 'TR' },
     areaServed: 'Gazipaşa, Antalya',
   };
-  const ld = [org, ...jsonld].map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join('');
+  const ld = [org, ...jsonld].map((o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/<\/?strong>/g, '')}</script>`).join('');
   return `<!doctype html>
 <html lang="${LANG_META[lang].html}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(t)}</title>
-<meta name="description" content="${esc(desc)}">
+<meta name="description" content="${esc(String(desc).replace(/<[^>]+>/g, ''))}">
 ${noindex ? '<meta name="robots" content="noindex">' : ''}
 <link rel="canonical" href="${SITE.url}${path}">
 ${alt}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ASRIN GROUP">
 <meta property="og:title" content="${esc(t)}">
-<meta property="og:description" content="${esc(desc)}">
+<meta property="og:description" content="${esc(String(desc).replace(/<[^>]+>/g, ''))}">
 <meta property="og:url" content="${SITE.url}${path}">
 <meta property="og:image" content="${SITE.url}${og}">
 <meta property="og:locale" content="${LANG_META[lang].locale}">
@@ -148,40 +148,31 @@ function nav(lang, alternates, current) {
 // ---------- Footer ----------
 function footer(lang, alternates) {
   const col = (title, links) => `<div class="foot__col"><h3 class="eyebrow">${tx(title, lang)}</h3><ul>${links.map(([h, l, ext]) => `<li><a href="${h}"${ext ? ' target="_blank" rel="noopener"' : ''}>${tx(l, lang)}</a></li>`).join('')}</ul></div>`;
-  return `<footer class="foot" data-theme="dark">
-  <div class="foot__cta wrap">
-    <div class="foot__lead">
-      <p class="eyebrow eyebrow--gold">ASRIN GROUP · Gazipaşa · 1999</p>
-      <p class="foot__tag" data-split>${tx(UI.tagline, lang)}</p>
-      <div class="foot__actions">
-        <a class="btn btn--ghost-light" href="${wa(tx(UI.waText, lang))}" target="_blank" rel="noopener">${ICONS.whatsapp}<span>WhatsApp</span></a>
-        <a class="btn btn--ghost-light" href="${SITE.phoneHref}">${ICONS.phone}<span>${SITE.phoneDisplay}</span></a>
+  return `<footer class="foot foot--min" data-theme="dark">
+  <div class="wrap fm">
+    <div class="fm__top">
+      <p class="fm__tag" data-split>${tx(UI.tagline, lang)}</p>
+      <a class="fm__cta" data-magnetic href="${wa(tx(UI.waText, lang))}" target="_blank" rel="noopener">${ICONS.whatsapp}<span>${tx(UI.cta.contact, lang)}</span>${ICONS.arrowR}</a>
+    </div>
+    <div class="fm__mid">
+      <a href="${url(lang)}" class="fm__logo" aria-label="ASRIN GROUP">${logo('foot')}</a>
+      <nav class="fm__nav" aria-label="${tx(UI.nav.projects, lang)}">
+        <a href="${url(lang, 'projects')}">${tx(UI.nav.projects, lang)}</a>
+        <a href="${projectUrl(lang, 'asrin-city-gazipasa')}">Asrin City</a>
+        <a href="${projectUrl(lang, 'blue-lagoon-village')}">Blue Lagoon</a>
+        <a href="${url(lang, 'about')}">${tx(UI.nav.about, lang)}</a>
+        <a href="${url(lang, 'gallery')}">${tx(UI.nav.gallery || UI.nav.photos, lang)}</a>
+        <a href="${url(lang, 'contact')}">${tx(UI.nav.contact, lang)}</a>
+      </nav>
+      <div class="fm__contact">
+        <a href="${SITE.phoneHref}">${SITE.phoneDisplay}</a>
+        <a href="mailto:${SITE.email}">${SITE.email}</a>
       </div>
     </div>
-    <a class="foot__circle" data-magnetic href="${url(lang, 'contact')}"><span>${tx(UI.cta.contact, lang)}</span>${ICONS.arrowR}</a>
-  </div>
-  <div class="foot__grid wrap">
-    <div class="foot__brand">
-      <a href="${url(lang)}" class="foot__logo">${logo('foot')}</a>
-      <p>${tx(L('1990\'da Hollanda\'da kuruldu. 1999\'dan beri Gazipaşa\'da.', 'Founded in the Netherlands in 1990. In Gazipaşa since 1999.', 'Основана в Нидерландах в 1990 году. В Газипаше с 1999 года.'), lang)}</p>
+    <div class="fm__base">
+      <span>© ${new Date().getFullYear()} ASRIN GROUP · Gazipaşa / Antalya</span>
+      <div class="lang lang--foot">${LANGS.map((l) => `<a href="${alternates[l]}" hreflang="${l}" data-setlang="${l}" class="lang__opt${l === lang ? ' is-active' : ''}">${l.toUpperCase()}</a>`).join('')}</div>
     </div>
-    ${col(UI.nav.projects, [[projectUrl(lang, 'asrin-city-gazipasa'), 'Asrin City Gazipaşa'], [projectUrl(lang, 'blue-lagoon-village'), 'Blue Lagoon Village'], [projectUrl(lang, 'asrin-town-15'), 'Asrin Town 15'], [projectUrl(lang, 'special-villas'), 'Special Villas'], [projectUrl(lang, 'asrin-10-11'), 'Asrin 10-11'], [projectUrl(lang, 'asrin-7-8'), 'Asrin 7-8']])}
-    ${col(UI.nav.about, [[url(lang, 'about'), UI.nav.about], [url(lang, 'about') + '#team', UI.nav.team], [url(lang, 'news'), UI.nav.news], [url(lang, 'gallery'), UI.nav.photos], [url(lang, 'videos'), UI.nav.videos], [url(lang, 'faq'), UI.nav.faq]])}
-    <div class="foot__col foot__contact">
-      <h3 class="eyebrow">${tx(UI.nav.contact, lang)}</h3>
-      <ul>
-        <li><a href="${SITE.phoneHref}">${SITE.phoneDisplay}</a></li>
-        <li><a href="${wa(tx(UI.waText, lang))}" target="_blank" rel="noopener">WhatsApp</a></li>
-        <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
-        <li><address>${SITE.addressShort}<br>07900 Gazipaşa / Antalya</address></li>
-      </ul>
-    </div>
-  </div>
-  <div class="foot__word" aria-hidden="true">ASRIN&nbsp;GROUP</div>
-  <div class="foot__base wrap">
-    <span>© ${new Date().getFullYear()} ASRIN GROUP · ASRIN İNŞAAT. ${tx(UI.rights, lang)}</span>
-    <span class="foot__note">${tx(UI.enhanced, lang)}</span>
-    <div class="lang lang--foot">${LANGS.map((l) => `<a href="${alternates[l]}" hreflang="${l}" data-setlang="${l}" class="lang__opt${l === lang ? ' is-active' : ''}">${LANG_META[l].name}</a>`).join('')}</div>
   </div>
 </footer>
 <nav class="dock" aria-label="${tx(UI.nav.contact, lang)}">
