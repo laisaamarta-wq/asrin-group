@@ -524,7 +524,7 @@
     let i = 0, t = 0, vis = false;
     const vio = new IntersectionObserver(([e]) => { vis = e.isIntersecting; }, { threshold: .4 });
     vio.observe(amn.querySelector('.amn__stage'));
-    const tick = () => { if (vis && !document.hidden) { i = (i + 1) % items.length; items[i].click(); const l = items[i].parentElement; l.scrollTo({ left: items[i].getBoundingClientRect().left - l.getBoundingClientRect().left + l.scrollLeft - 20, behavior: 'smooth' }); } };
+    const tick = () => { if (vis && !document.hidden) { i = (i + 1) % items.length; items[i].click(); } };
     t = setInterval(tick, 3400);
     items.forEach((it, k) => it.addEventListener('pointerdown', () => { clearInterval(t); i = k; }));
   }

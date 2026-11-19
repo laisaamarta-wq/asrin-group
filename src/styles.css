@@ -1720,3 +1720,14 @@ strong { font-weight: 600; }
   .lapse__l { grid-column: 3; font-size: .64rem !important; letter-spacing: .28em; }
   .lapse__n { grid-column: 3; font-family: var(--serif); font-style: italic; font-size: 1.12rem !important; line-height: 1.25; color: rgba(251, 248, 242, .9) !important; }
 }
+/* amenities tabs on phones: all visible as a 2-column button grid, no hidden sideways scroll */
+@media (max-width: 1024px) {
+  .amn__list { display: grid !important; grid-template-columns: 1fr 1fr; gap: .5rem; overflow: visible; padding: 0 1.25rem; margin-top: .9rem; }
+  .amn__list li { width: auto; min-height: 52px; padding: .45rem .7rem .45rem .45rem; border-radius: 14px; font-size: .78rem; line-height: 1.2; opacity: 1; color: rgba(251, 248, 242, .82); background: rgba(251, 248, 242, .04); }
+  .amn__list li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .amn__list li.is-on { color: var(--ivory-50); }
+  .amn__lb { white-space: normal; }
+  .amn__more { gap: .4rem; }
+  .amn__more li { padding: .35rem .7rem; font-size: .68rem; border-color: rgba(251, 248, 242, .12); color: rgba(251, 248, 242, .6); }
+}
+@media (min-width: 761px) and (max-width: 1024px) { .amn__list { grid-template-columns: repeat(3, 1fr); padding-inline: 2rem; } .amn__list li:last-child:nth-child(odd) { grid-column: auto; } }
