@@ -97,7 +97,7 @@ ${lapseSection(lang)}
     <div class="acx__units-head">
       ${eb('04', tx(L('Daire tipleri', 'Apartment types', 'Планировки'), lang))}
       <h3 class="h2" data-split>${tx(HOME2.unitsTitle, lang)}</h3>
-      <p class="acx__scale-note" data-reveal>${tx(L('Bir daireye gelin — fiyatı WhatsApp\'tan sorun.', 'Hover a home to open it — ask the price on WhatsApp.', 'Наведите на квартиру — цену можно узнать в WhatsApp.'), lang)}</p>
+      <p class="acx__scale-note" data-reveal>${tx(L('Açmak için bir daireye <span class="only-hover">gelin</span><span class="only-touch">dokunun</span> — fiyatı WhatsApp\'tan sorun.', '<span class="only-hover">Hover</span><span class="only-touch">Tap</span> a home to open it — ask the price on WhatsApp.', '<span class="only-hover">Наведите на квартиру</span><span class="only-touch">Нажмите на квартиру</span>, чтобы раскрыть её, — цену можно узнать в WhatsApp.'), lang)}</p>
     </div>
     <div class="apx" data-apx>
       ${CITY.units.map((u, i) => `<a class="apx__p${i === 1 ? ' is-on' : ''}" data-apx-p href="${wa(tx(UI.waProject, lang).replace('{p}', `${city.name} — ${tx(u.k, lang)}`))}" target="_blank" rel="noopener" data-cursor="WhatsApp">
@@ -105,6 +105,7 @@ ${lapseSection(lang)}
         <span class="apx__shade" aria-hidden="true"></span>
         <span class="apx__n">0${i + 1}</span>
         <span class="apx__vk" aria-hidden="true">${tx(u.k, lang)} · ${u.v}</span>
+        <span class="apx__plus" aria-hidden="true"><i></i><em>${tx(L('Aç', 'Open', 'Открыть'), lang)}</em></span>
         <span class="apx__info">
           <span class="apx__k">${tx(u.k, lang)}</span>
           <span class="apx__d">${tx(u.d, lang)}</span>
