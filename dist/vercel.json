@@ -57,8 +57,18 @@
       "permanent": true
     },
     {
-      "source": "/tr/galeri/:slug",
-      "destination": "/tr/galeri/",
+      "source": "/tr/galeri/:slug*",
+      "destination": "/tr/",
+      "permanent": true
+    },
+    {
+      "source": "/en/gallery/:slug*",
+      "destination": "/en/",
+      "permanent": true
+    },
+    {
+      "source": "/ru/galereya/:slug*",
+      "destination": "/ru/",
       "permanent": true
     }
   ],

@@ -90,7 +90,6 @@ function nav(lang, alternates, current) {
     ['city', projectUrl(lang, 'asrin-city-gazipasa'), UI.nav.city],
     ['lagoon', projectUrl(lang, 'blue-lagoon-village'), UI.nav.lagoon],
     ['about', url(lang, 'about'), UI.nav.about],
-    ['gallery', url(lang, 'gallery'), UI.nav.gallery],
     ['contact', url(lang, 'contact'), UI.nav.contact],
   ];
   const langs = LANGS.map((l) => `<a href="${alternates[l]}" hreflang="${l}" lang="${l}" class="lang__opt${l === lang ? ' is-active' : ''}" data-setlang="${l}" ${l === lang ? 'aria-current="true"' : ''}>${LANG_META[l].short}</a>`).join('<span class="lang__sep" aria-hidden="true"></span>');
@@ -100,7 +99,6 @@ function nav(lang, alternates, current) {
     [projectUrl(lang, 'asrin-city-gazipasa'), 'Asrin City Gazipaşa'],
     [projectUrl(lang, 'blue-lagoon-village'), 'Blue Lagoon Village'],
     [url(lang, 'about'), UI.nav.about],
-    [url(lang, 'gallery'), UI.nav.gallery],
     [url(lang, 'contact'), UI.nav.contact],
   ];
   const menuSmall = [
@@ -160,7 +158,6 @@ function footer(lang, alternates) {
         <a href="${projectUrl(lang, 'asrin-city-gazipasa')}">Asrin City</a>
         <a href="${projectUrl(lang, 'blue-lagoon-village')}">Blue Lagoon</a>
         <a href="${url(lang, 'about')}">${tx(UI.nav.about, lang)}</a>
-        <a href="${url(lang, 'gallery')}">${tx(UI.nav.gallery || UI.nav.photos, lang)}</a>
         <a href="${url(lang, 'contact')}">${tx(UI.nav.contact, lang)}</a>
       </nav>
       <div class="fm__contact">
@@ -506,7 +503,6 @@ export function homePage(lang) {
 <section class="gal" data-theme="light">
   <div class="wrap gal__head">
     <div>${eyebrow(tx(HOME.galleryEyebrow, lang))}<h2 class="h2" data-split>${tx(HOME.galleryTitle, lang)}</h2></div>
-    ${btnArrow(url(lang, 'gallery'), tx(UI.cta.allGallery, lang), 'btn--line')}
   </div>
   <div class="wrap bento">
     ${lbFig('city-vertical', lang, 'home', { cls: 'bento__a', sizes: '(max-width: 760px) 92vw, 33vw' })}
@@ -821,7 +817,7 @@ export function galleryPage(lang) {
 // ---------- VIDEOS ----------
 export function videosPage(lang) {
   const [first, ...rest] = LAGOON.films;
-  const body = `${pageHero(lang, { title: tx(PAGES.videos.title, lang), lead: tx(PAGES.videos.lead, lang), image: 'bl-poster-lagoon-finale', crumbs: [[url(lang, 'gallery'), tx(PAGES.gallery.title, lang)], [null, tx(PAGES.videos.title, lang)]] })}
+  const body = `${pageHero(lang, { title: tx(PAGES.videos.title, lang), lead: tx(PAGES.videos.lead, lang), image: 'bl-poster-lagoon-finale', crumbs: [[null, tx(PAGES.videos.title, lang)]] })}
 <section class="vids" data-theme="dark">
   <div class="wrap">
     <a class="vfeature lb lb--video" href="/assets/video/${first.file}.mp4" data-lightbox="films" data-video="1" data-caption="${esc(tx(first.title, lang))} — Blue Lagoon Village">

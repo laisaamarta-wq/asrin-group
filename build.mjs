@@ -101,7 +101,6 @@ async function main() {
       ['about', '', T.aboutPage(lang)],
       ['projects', '', T.projectsPage(lang)],
       ...PROJECTS.map((p) => ['projects', p.slug, T.projectPage(lang, p)]),
-      ['gallery', '', T.galleryPage(lang)],
       ['videos', '', T.videosPage(lang)],
       ['news', '', T.newsPage(lang)],
       ['faq', '', T.faqPage(lang)],
@@ -138,7 +137,9 @@ async function main() {
       r('/tr/proje/special-villa-s-100', '/tr/projeler/special-villas/'),
       r('/tr/proje/asrin-town-15-finished-02-01-2020-96', '/tr/projeler/asrin-town-15/'),
       r('/tr/proje/asrin-7-8-finished-on-2015-97', '/tr/projeler/asrin-7-8/'),
-      r('/tr/galeri/:slug', '/tr/galeri/'),
+      r('/tr/galeri/:slug*', '/tr/'),
+      r('/en/gallery/:slug*', '/en/'),
+      r('/ru/galereya/:slug*', '/ru/'),
     ],
     headers: [
       { source: '/assets/(.*)', headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }] },
