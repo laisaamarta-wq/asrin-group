@@ -765,7 +765,7 @@ ${factsBar}
   </div>
 </section>
 ${specifics}
-<section class="pgal" id="gallery" data-theme="light">
+${isLagoon ? '' : `<section class="pgal" id="gallery" data-theme="light">
   <div class="wrap">
     ${isVillas ? '' : `<div class="gal__head"><div>${eyebrow(`${p.gallery.length} ${tx(UI.labels.photoCount, lang)}`)}<h2 class="h2">${tx(UI.labels.gallery, lang)}</h2></div></div>`}
     ${isVillas ? (() => {
@@ -773,12 +773,12 @@ ${specifics}
       return `<div class="gal__head"><div>${eyebrow(`${rest.length} ${tx(UI.labels.photoCount, lang)}`)}<h2 class="h2">${tx(L('Diğer <em>villalarımız</em>', 'Our other <em>villas</em>', 'Другие <em>виллы</em>'), lang)}</h2><p class="gal__note">${tx(L('Taş duvarlar, kemerli teraslar ve denize bakan havuzlarıyla diğer Special Villas.', 'The other Special Villas — stone walls, arched terraces and sea-view pools.', 'Остальные Special Villas: каменная кладка, арочные террасы и бассейны с видом на море.'), lang)}</p></div></div><div class="masonry">${rest.map((n) => lbFig(n, lang, p.slug, { sizes: '(max-width: 760px) 92vw, 56vw' })).join('')}</div>`;
     })() : `<div class="masonry">${p.gallery.map((n) => lbFig(n, lang, p.slug, { sizes: '(max-width: 760px) 92vw, 56vw' })).join('')}</div>`}
   </div>
-</section>
-<a class="pnext" href="${projectUrl(lang, next.slug)}" data-theme="dark">
+</section>`}
+${isLagoon ? '' : `<a class="pnext" href="${projectUrl(lang, next.slug)}" data-theme="dark">
   <div class="pnext__media">${img(next.card, lang, { sizes: '100vw', alt: '' })}</div>
   <div class="pnext__shade" aria-hidden="true"></div>
   <div class="wrap pnext__inner"><span class="eyebrow eyebrow--light">${tx(UI.cta.next, lang)}</span><span class="pnext__name">${next.name}</span><span class="pnext__btn"><span>${tx(L('Projeyi gör', 'View project', 'Смотреть проект'), lang)}</span>${ICONS.arrowR}</span></div>
-</a>
+</a>`}
 ${contactSection(lang, { title: L(`${p.name} hakkında bilgi alın.`, `Ask us about ${p.name}.`, `Узнайте больше о ${p.name}.`), project: p.slug })}`;
 
   const ld = [crumbsLd(lang, [[tx(PAGES.projects.title, lang), url(lang, 'projects')], [p.name, projectUrl(lang, p.slug)]])];
