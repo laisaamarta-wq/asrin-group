@@ -547,23 +547,27 @@ export function aboutPage(lang) {
     ${STATS.map((s) => `<div class="stat" role="listitem"><span class="stat__n" ${s.plain ? '' : `data-count="${s.n}"`}>${s.plain ? s.n : s.n.toLocaleString('tr-TR')}</span><span class="stat__l">${tx(s.l, lang)}</span></div>`).join('')}
   </div>
 </section>
-<section class="ethos" data-theme="light">
-  <div class="wrap ethos__grid">
-    <div class="ethos__head">
-      ${eyebrow(tx(HOME.philosophyEyebrow, lang))}
-      <h2 class="h2" data-split>${tx(HOME.philosophyTitle, lang).replace(/\.\s/g, '.<br>')}</h2>
+<section class="ab2" data-theme="light">
+  <div class="wrap">
+    <div class="ab2__head">
+      <div>${eyebrow(tx(HOME.philosophyEyebrow, lang))}<h2 class="h2" data-split>${tx(HOME.philosophyTitle, lang).replace(/\s*([^.\s]+)\.\s*$/, ' <em>$1.</em>')}</h2></div>
     </div>
-    <ol class="pillars">${PILLARS.map((p, i) => `<li class="pillar" data-reveal><span class="pillar__n">0${i + 1}</span><h3>${tx(p.t, lang)}</h3><p>${tx(p.d, lang)}</p></li>`).join('')}</ol>
+    <ol class="ab2__cards">${PILLARS.map((p, i) => `<li class="ab2__card" data-reveal>
+      <span class="ab2__dot" aria-hidden="true"></span>
+      <figure class="ab2__img">${img(['city-detail', 'ac-golden', 'ac-blue'][i], lang, { sizes: '(max-width: 760px) 80vw, 30vw' })}<span class="ab2__n">0${i + 1}</span></figure>
+      <h3>${tx(p.t, lang)}</h3><p>${tx(p.d, lang)}</p>
+    </li>`).join('')}</ol>
+    ${processBlock(lang).replace('<div class="wrap pr2"', '<div class="pr2 pr2--in"')}
   </div>
-  ${processBlock(lang)}
 </section>
-<section class="team" id="team" data-theme="dark">
-  <div class="team__media" data-parallax="0.15">${img('city-pool', lang, { sizes: '100vw' })}</div>
-  <div class="team__shade" aria-hidden="true"></div>
-  <div class="wrap team__inner">
-    ${eyebrow(tx(ABOUT.teamTitle, lang), 'eyebrow--gold')}
-    <h2 class="h2 h2--light" data-split>${tx(UI.tagline, lang)}</h2>
-    <p data-reveal>${tx(ABOUT.teamBody, lang)}</p>
+<section class="team2" id="team" data-theme="light">
+  <div class="wrap team2__card">
+    <figure class="team2__img">${img('city-pool', lang, { sizes: '(max-width: 760px) 92vw, 50vw' })}</figure>
+    <div class="team2__txt">
+      ${eyebrow(tx(ABOUT.teamTitle, lang), 'eyebrow--gold')}
+      <h2 class="team2__title">${tx(UI.tagline, lang)}</h2>
+      <p>${tx(ABOUT.teamBody, lang)}</p>
+    </div>
   </div>
 </section>
 ${timeline(lang)}
