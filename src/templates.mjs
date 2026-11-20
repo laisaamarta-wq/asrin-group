@@ -610,12 +610,13 @@ ${contactSection(lang)}`;
 
 // ---------- PROJECT DETAIL ----------
 // Blue Lagoon has its own reception number: swap every call/WhatsApp number on its page (structured data keeps the company number)
-const LAGOON_PHONE = { display: '+90 (544) 156 40 41', plain: '+90 544 156 40 41', digits: '905441564041' };
+const LAGOON_PHONE = { display: '+90 (544) 156 40 41', plain: '+90 544 156 40 41', digits: '905441564041', email: 'info@bluelagoonvillage.net' };
 function withPhone(html, ph) {
   return html.split(/(<script type="application\/ld\+json">[\s\S]*?<\/script>)/).map((part, i) => i % 2 ? part : part
     .split(SITE.phoneDisplay).join(ph.display)
     .split(SITE.phone).join(ph.plain)
-    .split(SITE.wa).join(ph.digits)).join('');
+    .split(SITE.wa).join(ph.digits)
+    .split(SITE.email).join(ph.email)).join('');
 }
 export function projectPage(lang, p) {
   const i = PROJECTS.indexOf(p);
