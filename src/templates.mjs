@@ -215,6 +215,38 @@ const processBlock = (lang) => `<div class="wrap pr2" data-reveal>
     <p class="pr2__eb">${tx(L('Süreç', 'How we build', 'Как мы строим'), lang)}</p>
     <ol class="pr2__list">${PROCESS.map((s, i) => `<li class="pr2__step"><span class="pr2__n">0${i + 1}</span><div class="pr2__txt"><b>${tx(s.t, lang)}</b><p>${tx(s.d, lang)}</p></div></li>`).join('')}</ol>
   </div>`;
+const ruPlural = (n, one, few, many) => { const m10 = n % 10, m100 = n % 100; return m10 === 1 && m100 !== 11 ? one : m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20) ? few : many; };
+const inspSection = (lang) => {
+  const groups = [
+    { id: 'apt', t: UI.labels.apartment, items: CITY.apartment, pic: 'ac-balcony' },
+    { id: 'tech', t: UI.labels.technical, items: CITY.technical, pic: 'city-detail' },
+  ];
+  const count = (n) => lang === 'ru' ? `${n} ${ruPlural(n, 'пункт', 'пункта', 'пунктов')}` : lang === 'tr' ? `${n} özellik` : `${n} features`;
+  const stops = CITY.distances;
+  return `<div class="wrap insp">
+    <div class="insp__acc">${groups.map((g) => `<article class="insp__item" data-insp-item>
+      <button class="insp__row" type="button" aria-expanded="false" aria-controls="insp-${g.id}">
+        <span class="insp__t">${tx(g.t, lang)}</span>
+        <span class="insp__c">${count(g.items.length)}</span>
+        <span class="insp__plus" aria-hidden="true"><i></i><i></i></span>
+      </button>
+      <div class="insp__panel" id="insp-${g.id}" role="region">
+        <div class="insp__inner">
+          <figure class="insp__img">${img(g.pic, lang, { sizes: '(max-width: 760px) 92vw, 38vw' })}</figure>
+          <ul class="insp__list">${g.items.map((a, i) => `<li style="--i:${i}">${tx(a, lang)}</li>`).join('')}</ul>
+        </div>
+      </div>
+    </article>`).join('')}</div>
+    <div class="route" data-route>
+      <h3 class="route__t">${tx(UI.labels.distances, lang)}</h3>
+      <div class="route__track">
+        <span class="route__line" aria-hidden="true"><i></i></span>
+        <span class="route__home"><em>Asrin City</em></span>
+        <ol class="route__stops">${stops.map((d, i) => `<li class="route__stop" style="--i:${i}"><b>${String(d.v).replace(/\s*(km|m)$/, '<small>$1</small>')}</b><span>${tx(d.l, lang)}</span></li>`).join('')}</ol>
+      </div>
+    </div>
+  </div>`;
+};
 const eyebrow = (t, cls = '') => `<p class="eyebrow ${cls}">${t}</p>`;
 const btnArrow = (href, label, cls = 'btn--dark', ext = false) => `<a class="btn ${cls}" href="${href}"${ext ? ' target="_blank" rel="noopener"' : ''}><span>${label}</span>${ICONS.arrowR}</a>`;
 const statusLabel = (p, lang) => tx(UI.status[p.status], lang);
@@ -610,11 +642,7 @@ ${lapseSection(lang)}
 </section>
 ${amenSection(lang)}
 <section class="spec" data-theme="light">
-  <div class="wrap spec__cols" style="margin-top:0">
-    <div class="speclist" data-reveal><h2 class="h3">${tx(UI.labels.apartment, lang)}</h2><ul>${CITY.apartment.map((a) => `<li>${tx(a, lang)}</li>`).join('')}</ul></div>
-    <div class="speclist" data-reveal><h2 class="h3">${tx(UI.labels.technical, lang)}</h2><ul>${CITY.technical.map((a) => `<li>${tx(a, lang)}</li>`).join('')}</ul></div>
-    <div class="speclist" data-reveal><h2 class="h3">${tx(UI.labels.distances, lang)}</h2><ul class="dist">${CITY.distances.map((d) => `<li><b>${d.v}</b><span>${tx(d.l, lang)}</span></li>`).join('')}</ul></div>
-  </div>
+  ${inspSection(lang)}
 </section>`;
   }
   if (isLagoon) {

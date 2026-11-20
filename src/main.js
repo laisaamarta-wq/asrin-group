@@ -627,3 +627,21 @@
   });
 })();
 
+
+/* v9 — Asrin City details accordion + route */
+(() => {
+  document.querySelectorAll('[data-insp-item]').forEach((it) => {
+    const btn = it.querySelector('.insp__row');
+    btn.addEventListener('click', () => {
+      const open = !it.classList.contains('is-open');
+      it.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      if (open) it.querySelectorAll('img[loading="lazy"]').forEach((im) => { im.loading = 'eager'; });
+    });
+  });
+  const r = document.querySelector('[data-route]');
+  if (r) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { r.classList.add('is-in'); io.disconnect(); } }), { threshold: 0.4 });
+    io.observe(r);
+  }
+})();
