@@ -1887,3 +1887,71 @@ strong { font-weight: 600; }
 .pintro:has(+ .lapse) { padding-bottom: clamp(3.5rem, 7vw, 6rem); }
 .spec:has(.insp) { padding-bottom: clamp(3rem, 6vw, 6rem); }
 .spec:has(.insp) + .pgal { padding-top: clamp(3rem, 6vw, 6rem); }
+
+/* v12 — Special Villas: the new villa showcase */
+.nv { background: var(--navy-950); color: var(--ivory-50); padding-block: clamp(5rem, 9vw, 9rem); }
+.nv__head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.2rem 5rem; align-items: end; margin-bottom: clamp(2.6rem, 5vw, 4.5rem); }
+.nv__head .eyebrow { grid-column: 1 / -1; }
+.nv__title { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(2.7rem, 1.6rem + 4vw, 5.8rem); line-height: .98; letter-spacing: -.012em; }
+.nv__title em { font-style: italic; color: var(--champagne); }
+.nv__lead { margin: 0 0 .4rem; max-width: 40ch; font-size: clamp(1rem, .95rem + .2vw, 1.12rem); line-height: 1.65; color: rgba(251, 248, 242, .74); }
+.nv__grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(.7rem, 1.4vw, 1.2rem); }
+.nv__f { margin: 0; overflow: hidden; border-radius: 2px; }
+.nv__f .lb, .nv__f img { display: block; width: 100%; height: 100%; }
+.nv__f img { object-fit: cover; transition: transform 1.6s var(--ease); }
+.nv__f:hover img { transform: scale(1.04); }
+.nv__a { grid-column: 1 / 9; aspect-ratio: 16 / 10; }
+.nv__b { grid-column: 9 / 13; grid-row: span 2; }
+.nv__feats { grid-column: 1 / 4; align-self: center; list-style: none; margin: 0; padding: 1.4rem 0; display: grid; gap: .95rem; }
+.nv__feats li { display: flex; gap: .8rem; font-size: .95rem; line-height: 1.45; color: rgba(251, 248, 242, .84); }
+.nv__feats li::before { content: ''; width: 16px; height: 1px; margin-top: .72em; background: var(--champagne); flex: none; }
+.nv__c { grid-column: 4 / 9; aspect-ratio: 16 / 10; }
+.nv__d { grid-column: 1 / 5; aspect-ratio: 3 / 4; }
+.nv__e { grid-column: 5 / 13; align-self: stretch; }
+.nv__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: clamp(2rem, 4vw, 3rem); }
+.btn--light { border-color: rgba(251, 248, 242, .4); color: var(--ivory-50); }
+.btn--light:hover { background: var(--ivory-50); color: var(--navy-950); border-color: var(--ivory-50); }
+@media (max-width: 1024px) { .nv__head { grid-template-columns: 1fr; } }
+@media (max-width: 760px) {
+  .nv { padding-block: 4.2rem; }
+  .nv__title { font-size: clamp(2.6rem, 11vw, 3.4rem); }
+  .nv__grid { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .nv__a { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
+  .nv__b { grid-column: 1; grid-row: auto; aspect-ratio: 3 / 4.6; }
+  .nv__d { grid-column: 2; aspect-ratio: 3 / 4.6; }
+  .nv__c { grid-column: 1 / -1; aspect-ratio: 16 / 10; order: 4; }
+  .nv__feats { grid-column: 1 / -1; order: 5; grid-template-columns: 1fr 1fr; gap: .8rem 1rem; padding: 1.4rem 0 1rem; }
+  .nv__feats li { font-size: .86rem; gap: .55rem; }
+  .nv__feats li::before { width: 10px; }
+  .nv__e { grid-column: 1 / -1; aspect-ratio: 16 / 10; order: 6; }
+  .nv__cta .btn { flex: 1 1 auto; justify-content: center; }
+}
+
+/* v12 — Blue Lagoon: distances route, rules, yoga — light editorial */
+.lg2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem clamp(2rem, 4vw, 4.5rem); margin-top: clamp(4rem, 8vw, 7rem); }
+.lg2__col { position: relative; padding-top: 1.5rem; }
+.lg2__col::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--gold), rgba(176, 141, 87, .12)); }
+.lg2__eb { margin: 0 0 1.6rem; font-family: var(--serif); font-weight: 400; font-size: clamp(1.6rem, 1.3rem + .7vw, 2rem); line-height: 1.1; color: var(--navy-900); }
+.lg2__list { list-style: none; margin: 0; padding: 0; display: grid; gap: .85rem; }
+.lg2__list li { display: flex; gap: .8rem; font-size: .95rem; color: var(--ink-2); }
+.lg2__list li::before { content: ''; width: 14px; height: 1px; margin-top: .75em; background: var(--gold); flex: none; }
+.lg2__addr { margin: 1.4rem 0 0; font-size: .82rem; line-height: 1.5; color: var(--ink-3); }
+.lg2__p { margin: 0 0 1.6rem; font-size: .97rem; line-height: 1.65; color: var(--ink-2); }
+.vroute { list-style: none; margin: 0; padding: 0 0 0 1.7rem; position: relative; display: grid; gap: 1.15rem; }
+.vroute::before { content: ''; position: absolute; left: 4px; top: .55rem; bottom: .9rem; width: 1px; background: rgba(176, 141, 87, .25); }
+.vroute::after { content: ''; position: absolute; left: 4px; top: .55rem; bottom: .9rem; width: 1px; background: var(--gold); transform-origin: 50% 0; transform: scaleY(0); transition: transform 2.2s cubic-bezier(.6, 0, .2, 1); }
+[data-route].is-in .vroute::after { transform: scaleY(1); }
+.vroute li { position: relative; }
+.vroute li::before { content: ''; position: absolute; left: calc(-1.7rem + 0px); top: .5rem; width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--gold); background: var(--ivory-50); transform: scale(.4); transition: transform .5s cubic-bezier(.3, 1.6, .5, 1), background .4s; }
+.vroute__home::before { background: var(--navy-900) !important; border-color: var(--navy-900) !important; transform: scale(1.15) !important; }
+.vroute__home span { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--navy-900); }
+.vroute__stop { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 1rem; opacity: 0; transform: translateY(6px); transition: opacity .6s, transform .7s cubic-bezier(.2, .7, .2, 1); }
+[data-route].is-in .vroute__stop { opacity: 1; transform: none; transition-delay: calc(.3s + var(--i) * .35s); }
+[data-route].is-in .vroute__stop::before { transform: scale(1); background: var(--gold); transition-delay: calc(.3s + var(--i) * .35s); }
+.vroute__stop b { order: 2; font-family: var(--serif); font-weight: 300; font-size: clamp(1.6rem, 1.3rem + .8vw, 2rem); line-height: 1; color: var(--navy-900); white-space: nowrap; }
+.vroute__stop b small { font-size: .5em; margin-left: .15em; color: var(--gold-deep); }
+.vroute__stop span { font-size: .9rem; line-height: 1.35; color: var(--ink-2); }
+@media (max-width: 1024px) { .lg2 { grid-template-columns: 1fr 1fr; } .lg2__col:first-child { grid-column: 1 / -1; } }
+@media (max-width: 760px) { .lg2 { grid-template-columns: 1fr; gap: 2.8rem; margin-top: 3.5rem; } .lg2__eb { font-size: 1.7rem; margin-bottom: 1.3rem; } }
+@media (prefers-reduced-motion: reduce) { .vroute::after, .vroute__stop, .vroute li::before { transition: none !important; } }
+.nv__b img { object-position: 50% 62%; }

@@ -213,6 +213,7 @@ const processBlock = (lang) => `<div class="wrap pr2" data-reveal>
     <p class="pr2__eb">${tx(L('Süreç', 'How we build', 'Как мы строим'), lang)}</p>
     <ol class="pr2__list">${PROCESS.map((s, i) => `<li class="pr2__step"><span class="pr2__n">0${i + 1}</span><div class="pr2__txt"><b>${tx(s.t, lang)}</b><p>${tx(s.d, lang)}</p></div></li>`).join('')}</ol>
   </div>`;
+const ruUnit = (v, lang) => lang === 'ru' ? String(v).replace(/\bkm\b/g, 'км').replace(/(\d)\s*m\b/g, '$1 м') : String(v);
 const ruPlural = (n, one, few, many) => { const m10 = n % 10, m100 = n % 100; return m10 === 1 && m100 !== 11 ? one : m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20) ? few : many; };
 const inspSection = (lang) => {
   const groups = [
@@ -240,7 +241,7 @@ const inspSection = (lang) => {
       <div class="route__track">
         <span class="route__line" aria-hidden="true"><i></i></span>
         <span class="route__home"><em>Asrin City</em></span>
-        <ol class="route__stops">${stops.map((d, i) => `<li class="route__stop" style="--i:${i}"><b>${String(d.v).replace(/\s*(km|m)$/, '<small>$1</small>')}</b><span>${tx(d.l, lang)}</span></li>`).join('')}</ol>
+        <ol class="route__stops">${stops.map((d, i) => `<li class="route__stop" style="--i:${i}"><b>${ruUnit(d.v, lang).replace(/\s*(km|m|км|м)$/, '<small>$1</small>')}</b><span>${tx(d.l, lang)}</span></li>`).join('')}</ol>
       </div>
     </div>
   </div>`;
@@ -611,6 +612,7 @@ export function projectPage(lang, p) {
   const next = PROJECTS[(i + 1) % PROJECTS.length];
   const isCity = p.slug === 'asrin-city-gazipasa';
   const isLagoon = p.slug === 'blue-lagoon-village';
+  const isVillas = p.slug === 'special-villas';
   const waMsg = tx(UI.waProject, lang).replace('{p}', p.name);
   const factsBar = `<dl class="pfacts wrap">
     <div><dt>${tx(UI.labels.location, lang)}</dt><dd>${tx(p.location, lang)}</dd></div>
@@ -644,6 +646,39 @@ ${amenSection(lang)}
   ${inspSection(lang)}
 </section>`;
   }
+  if (isVillas) {
+    const feats = [
+      L('Deniz manzaralı sonsuzluk havuzu', 'Infinity pool facing the sea', 'Бассейн-инфинити с видом на море'),
+      L('Traverten teraslar', 'Travertine terraces', 'Травертиновые террасы'),
+      L('Mermer merdiven', 'Marble staircase', 'Мраморная лестница'),
+      L('Yerden tavana camlar', 'Floor-to-ceiling glazing', 'Панорамные окна в пол'),
+      L('Çatı terası', 'Roof terrace', 'Терраса на крыше'),
+      L('Deniz ve dağ manzarası', 'Sea and mountain views', 'Вид на море и горы'),
+    ];
+    const fig = (n, cls) => `<figure class="nv__f ${cls}" data-clip>${lbFig(n, lang, 'nv', { sizes: '(max-width: 760px) 92vw, 60vw' })}</figure>`;
+    specifics = `
+<section class="nv" data-theme="dark" id="new-villa">
+  <div class="wrap">
+    <header class="nv__head">
+      <p class="eyebrow eyebrow--gold">${tx(L('Yeni · Yakın zamanda tamamlandı', 'New · Recently completed', 'Новинка · Недавно построена'), lang)}</p>
+      <h2 class="nv__title" data-split>${tx(L('Denizin üzerinde <em>beyaz bir villa.</em>', 'A white villa <em>above the sea.</em>', 'Белая вилла <em>над морем.</em>'), lang)}</h2>
+      <p class="nv__lead" data-reveal>${tx(L('Muz bahçeleriyle çevrili yamaçta yeni villamız: traverten teraslar, açık denize bakan sonsuzluk havuzu ve ışıkla dolu, yerden tavana camlı yaşam alanı.', 'Our newest villa on a hillside among banana terraces: travertine terraces, an infinity pool facing the open sea and a light-filled living space with floor-to-ceiling glass.', 'Наша новая вилла на склоне среди банановых террас: травертиновые террасы, бассейн-инфинити с видом на открытое море и светлая гостиная с окнами в пол.'), lang)}</p>
+    </header>
+    <div class="nv__grid">
+      ${fig('nv-facade', 'nv__a')}
+      ${fig('nv-terrace', 'nv__b')}
+      <ul class="nv__feats" data-reveal>${feats.map((f) => `<li>${tx(f, lang)}</li>`).join('')}</ul>
+      ${fig('nv-living', 'nv__c')}
+      ${fig('nv-stairs', 'nv__d')}
+      ${fig('nv-pool', 'nv__e')}
+    </div>
+    <div class="nv__cta" data-reveal>
+      <a class="btn btn--wa" href="${wa(tx(UI.waProject, lang).replace('{p}', 'Special Villas — ' + tx(L('yeni villa', 'the new villa', 'новая вилла'), lang)))}" target="_blank" rel="noopener">${ICONS.whatsapp}<span>${tx(L('Villa hakkında sor', 'Ask about the villa', 'Узнать о вилле'), lang)}</span></a>
+      <a class="btn btn--line btn--light" href="#gallery">${tx(L('Tüm fotoğraflar', 'All photos', 'Все фото'), lang)}</a>
+    </div>
+  </div>
+</section>`;
+  }
   if (isLagoon) {
     specifics = `
 <section class="spec spec--lagoon" data-theme="light">
@@ -654,10 +689,24 @@ ${amenSection(lang)}
       ${LAGOON.rooms.map((r) => `<article class="room" data-reveal><div class="room__media">${img(r.img, lang, { sizes: '(max-width: 760px) 86vw, 30vw' })}</div><h3>${tx(r.name, lang)}</h3><p>${tx(r.spec, lang)}</p></article>`).join('')}
     </div>
   </div>
-  <div class="wrap spec__cols">
-    <div class="speclist" data-reveal><h2 class="h3">${tx(UI.labels.distances, lang)}</h2><ul class="dist">${LAGOON.distances.map((d) => `<li><b>${lang === 'en' && d.vEn ? d.vEn : lang === 'ru' && d.vRu ? d.vRu : d.v}</b><span>${tx(d.l, lang)}</span></li>`).join('')}</ul></div>
-    <div class="speclist" data-reveal><h2 class="h3">${tx(UI.labels.rules, lang)}</h2><ul>${LAGOON.rules.map((r) => `<li>${tx(r, lang)}</li>`).join('')}</ul><p class="speclist__addr">${LAGOON.address}</p></div>
-    <div class="speclist" data-reveal><h2 class="h3">${tx(L('Yoga ve inziva', 'Yoga &amp; retreats', 'Йога и ретриты'), lang)}</h2><p>${tx(LAGOON.yoga, lang)}</p>${btnArrow(SITE.blueLagoonSite, tx(UI.cta.book, lang), 'btn--dark', true)}</div>
+  <div class="wrap lg2">
+    <div class="lg2__col" data-route>
+      <h3 class="lg2__eb">${tx(UI.labels.distances, lang)}</h3>
+      <ol class="vroute">
+        <li class="vroute__home"><span>Blue Lagoon Village</span></li>
+        ${LAGOON.distances.map((d, i) => `<li class="vroute__stop" style="--i:${i}"><b>${ruUnit(lang === 'en' && d.vEn ? d.vEn : lang === 'ru' && d.vRu ? d.vRu : d.v, lang).replace(/\s*(km|m|min|dk|мин|км|м)$/, ' <small>$1</small>')}</b><span>${tx(d.l, lang)}</span></li>`).join('')}
+      </ol>
+    </div>
+    <div class="lg2__col" data-reveal>
+      <h3 class="lg2__eb">${tx(UI.labels.rules, lang)}</h3>
+      <ul class="lg2__list">${LAGOON.rules.map((r) => `<li>${tx(r, lang)}</li>`).join('')}</ul>
+      <p class="lg2__addr">${LAGOON.address}</p>
+    </div>
+    <div class="lg2__col lg2__col--yoga" data-reveal>
+      <h3 class="lg2__eb">${tx(L('Yoga ve inziva', 'Yoga &amp; retreats', 'Йога и ретриты'), lang)}</h3>
+      <p class="lg2__p">${tx(LAGOON.yoga, lang)}</p>
+      ${btnArrow(SITE.blueLagoonSite, tx(UI.cta.book, lang), 'btn--dark', true)}
+    </div>
   </div>
 </section>
 <section class="films" data-theme="dark">
@@ -691,7 +740,7 @@ ${factsBar}
   </div>
 </section>
 ${specifics}
-<section class="pgal" data-theme="light">
+<section class="pgal" id="gallery" data-theme="light">
   <div class="wrap">
     <div class="gal__head"><div>${eyebrow(`${p.gallery.length} ${tx(UI.labels.photoCount, lang)}`)}<h2 class="h2">${tx(UI.labels.gallery, lang)}</h2></div></div>
     <div class="masonry">${p.gallery.map((n) => lbFig(n, lang, p.slug, { sizes: '(max-width: 760px) 92vw, 33vw' })).join('')}</div>

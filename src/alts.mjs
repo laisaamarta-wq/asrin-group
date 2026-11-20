@@ -1,6 +1,16 @@
 import { L } from './content.mjs';
 // Localised alt text for every image.
 export const ALT = {
+  'nv-pool-sun': L('Special Villas: denize bakan teras ve sonsuzluk havuzu', 'Special Villas: terrace and infinity pool facing the sea', 'Special Villas: терраса и бассейн-инфинити с видом на море'),
+  'nv-facade': L('Special Villas: yeni beyaz villa ve traverten teras', 'Special Villas: the new white villa and its travertine terrace', 'Special Villas: новая белая вилла и травертиновая терраса'),
+  'nv-living': L('Special Villas: deniz manzaralı, yerden tavana camlı salon', 'Special Villas: living room with floor-to-ceiling sea-view glazing', 'Special Villas: гостиная с панорамными окнами на море'),
+  'nv-pool': L('Special Villas: sonsuzluk havuzu ve açık deniz', 'Special Villas: infinity pool and the open sea', 'Special Villas: бассейн-инфинити и открытое море'),
+  'nv-terrace': L('Special Villas: denize bakan kapalı teras', 'Special Villas: covered terrace looking out to sea', 'Special Villas: крытая терраса с видом на море'),
+  'nv-stairs': L('Special Villas: mermer merdiven', 'Special Villas: marble staircase', 'Special Villas: мраморная лестница'),
+  'nv-front': L('Special Villas: villanın teras cephesi', 'Special Villas: the villa’s terrace front', 'Special Villas: фасад виллы со стороны террас'),
+  'nv-entrance': L('Special Villas: villanın giriş cephesi', 'Special Villas: the villa’s entrance front', 'Special Villas: входной фасад виллы'),
+  'nv-gate': L('Special Villas: giriş ve muz bahçeleri', 'Special Villas: entrance among banana gardens', 'Special Villas: въезд среди банановых садов'),
+  'nv-side': L('Special Villas: villa, bahçe ve deniz', 'Special Villas: the villa, garden and sea', 'Special Villas: вилла, сад и море'),
   'city-hero': L('Asrin City Gazipaşa, altın saatte drone görünümü, arkada Toros dağları ve deniz', 'Asrin City Gazipaşa from the air at golden hour, Taurus mountains and sea behind', 'Asrin City Gazipaşa с высоты в золотой час, на фоне горы Тавра и море'),
   'city-vertical': L('Asrin City kulesi ve havuzlu bahçesi, gün batımında', 'The Asrin City tower and pool garden at sunset', 'Башня Asrin City и сад с бассейном на закате'),
   'city-dusk': L('Asrin City akşam mavi saatte, ışıklı pencereler ve aydınlatılmış havuz', 'Asrin City at blue hour, windows lit and the pool glowing', 'Asrin City в синий час: светятся окна и бассейн'),

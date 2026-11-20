@@ -639,10 +639,10 @@
       if (open) it.querySelectorAll('img[loading="lazy"]').forEach((im) => { im.loading = 'eager'; });
     });
   });
-  const r = document.querySelector('[data-route]');
-  if (r) {
-    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { r.classList.add('is-in'); io.disconnect(); } }), { threshold: 0.4 });
-    io.observe(r);
+  const rs = document.querySelectorAll('[data-route]');
+  if (rs.length) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: 0.3 });
+    rs.forEach((r) => io.observe(r));
   }
 })();
 
