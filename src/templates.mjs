@@ -609,6 +609,14 @@ ${contactSection(lang)}`;
 }
 
 // ---------- PROJECT DETAIL ----------
+// Blue Lagoon has its own reception number: swap every call/WhatsApp number on its page (structured data keeps the company number)
+const LAGOON_PHONE = { display: '+90 (544) 156 40 41', plain: '+90 544 156 40 41', digits: '905441564041' };
+function withPhone(html, ph) {
+  return html.split(/(<script type="application\/ld\+json">[\s\S]*?<\/script>)/).map((part, i) => i % 2 ? part : part
+    .split(SITE.phoneDisplay).join(ph.display)
+    .split(SITE.phone).join(ph.plain)
+    .split(SITE.wa).join(ph.digits)).join('');
+}
 export function projectPage(lang, p) {
   const i = PROJECTS.indexOf(p);
   const next = PROJECTS[(i + 1) % PROJECTS.length];
@@ -762,7 +770,8 @@ ${contactSection(lang, { title: L(`${p.name} hakkında bilgi alın.`, `Ask us ab
   const ld = [crumbsLd(lang, [[tx(PAGES.projects.title, lang), url(lang, 'projects')], [p.name, projectUrl(lang, p.slug)]])];
   if (isLagoon) ld.push({ '@context': 'https://schema.org', '@type': 'LodgingBusiness', name: 'Blue Lagoon Village', address: { '@type': 'PostalAddress', streetAddress: 'Kanal Yolu Sokak 326, Koru Mah.', addressLocality: 'Gazipaşa', addressRegion: 'Antalya', postalCode: '07900', addressCountry: 'TR' }, checkinTime: '15:00', checkoutTime: '10:30', petsAllowed: false, url: SITE.blueLagoonSite });
   else ld.push({ '@context': 'https://schema.org', '@type': 'ApartmentComplex', name: p.name, description: tx(p.intro, lang), address: { '@type': 'PostalAddress', addressLocality: 'Gazipaşa', addressRegion: 'Antalya', addressCountry: 'TR' }, image: `${SITE.url}${full(p.cover)}` });
-  return page({ lang, route: 'projects', sub: p.slug, title: p.name, desc: tx(p.intro, lang).slice(0, 158), body, current: isCity ? 'city' : isLagoon ? 'lagoon' : 'projects', ogImage: isLagoon ? 'bl-poster-hero' : p.cover, jsonld: ld });
+  const html = page({ lang, route: 'projects', sub: p.slug, title: p.name, desc: tx(p.intro, lang).slice(0, 158), body, current: isCity ? 'city' : isLagoon ? 'lagoon' : 'projects', ogImage: isLagoon ? 'bl-poster-hero' : p.cover, jsonld: ld });
+  return isLagoon ? withPhone(html, LAGOON_PHONE) : html;
 }
 
 function filmCard(f, lang, group) {
