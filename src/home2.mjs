@@ -99,21 +99,7 @@ ${lapseSection(lang)}
       <h3 class="h2" data-split>${tx(HOME2.unitsTitle, lang)}</h3>
       <p class="acx__scale-note" data-reveal>${tx(L('Açmak için bir daireye <span class="only-hover">gelin</span><span class="only-touch">dokunun</span> — fiyatı WhatsApp\'tan sorun.', '<span class="only-hover">Hover</span><span class="only-touch">Tap</span> a home to open it — ask the price on WhatsApp.', '<span class="only-hover">Наведите на квартиру</span><span class="only-touch">Нажмите на квартиру</span>, чтобы раскрыть её, — цену можно узнать в WhatsApp.'), lang)}</p>
     </div>
-    <div class="apx" data-apx>
-      ${CITY.units.map((u, i) => `<a class="apx__p${i === 1 ? ' is-on' : ''}" data-apx-p href="${wa(tx(UI.waProject, lang).replace('{p}', `${city.name} — ${tx(u.k, lang)}`))}" target="_blank" rel="noopener" data-cursor="WhatsApp">
-        ${img(['ac-lookup', 'ac-pool-gold', 'ac-golden', 'city-detail'][i], lang, { sizes: '(max-width: 760px) 92vw, 50vw', alt: '' })}
-        <span class="apx__shade" aria-hidden="true"></span>
-        <span class="apx__n">0${i + 1}</span>
-        <span class="apx__vk" aria-hidden="true">${tx(u.k, lang)} · ${u.v}</span>
-        <span class="apx__plus" aria-hidden="true"><i></i><em>${tx(L('Aç', 'Open', 'Открыть'), lang)}</em></span>
-        <span class="apx__info">
-          <span class="apx__k">${tx(u.k, lang)}</span>
-          <span class="apx__d">${tx(u.d, lang)}</span>
-          <span class="apx__v">${u.v}</span>
-          <span class="apx__go">${ICONS.whatsapp}<span>${tx(L('Fiyat sor', 'Ask the price', 'Узнать цену'), lang)}</span>${ICONS.arrowR}</span>
-        </span>
-      </a>`).join('')}
-    </div>
+    ${apxPanels(lang, city.name, ['ac-lookup', 'ac-pool-gold', 'ac-golden', 'city-detail'])}
     <div class="acx__ctas" data-reveal>
       <a class="btn btn--dark" data-magnetic href="${pUrl(lang, city.slug)}"><span>${tx(UI.cta.discover, lang)}</span>${ICONS.arrowR}</a>
       <a class="btn btn--line" data-magnetic href="${SITE.phoneHref}">${ICONS.phone}<span>${SITE.phoneDisplay}</span></a>
@@ -292,4 +278,22 @@ export function amenSection(lang) {
     </div>
   </div>
 </section>`;
+}
+
+export function apxPanels(lang, pname, pics) {
+  return `    <div class="apx" data-apx>
+      ${CITY.units.map((u, i) => `<a class="apx__p${i === 1 ? ' is-on' : ''}" data-apx-p href="${wa(tx(UI.waProject, lang).replace('{p}', `${pname} — ${tx(u.k, lang)}`))}" target="_blank" rel="noopener" data-cursor="WhatsApp">
+        ${img(pics[i], lang, { sizes: '(max-width: 760px) 92vw, 50vw', alt: '' })}
+        <span class="apx__shade" aria-hidden="true"></span>
+        <span class="apx__n">0${i + 1}</span>
+        <span class="apx__vk" aria-hidden="true">${tx(u.k, lang)} · ${u.v}</span>
+        <span class="apx__plus" aria-hidden="true"><i></i><em>${tx(L('Aç', 'Open', 'Открыть'), lang)}</em></span>
+        <span class="apx__info">
+          <span class="apx__k">${tx(u.k, lang)}</span>
+          <span class="apx__d">${tx(u.d, lang)}</span>
+          <span class="apx__v">${u.v}</span>
+          <span class="apx__go">${ICONS.whatsapp}<span>${tx(L('Fiyat sor', 'Ask the price', 'Узнать цену'), lang)}</span>${ICONS.arrowR}</span>
+        </span>
+      </a>`).join('')}
+    </div>`;
 }

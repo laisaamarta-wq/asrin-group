@@ -1842,3 +1842,43 @@ strong { font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
   .insp__panel, .insp__img, .insp__img img, .insp__list li, .route__line i, .route__stop, .route__stop::before { transition: none !important; }
 }
+
+/* v10 — apartment panels on Asrin City page */
+.spec__apx { margin-top: clamp(1.8rem, 3vw, 2.6rem); }
+
+/* v10 — next project: neat pill instead of a big arrow */
+.pnext .pnext__btn { display: inline-flex; align-items: center; gap: .75rem; margin-top: 1.2rem; padding: .85rem 1.15rem .85rem 1.4rem; border: 1px solid rgba(251, 248, 242, .5); border-radius: 100px; background: rgba(6, 18, 32, .28); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: .72rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; transition: background .45s var(--ease), color .45s var(--ease), border-color .45s; }
+.pnext .pnext__btn .ic { width: 16px; height: 16px; transition: transform .5s var(--ease); }
+.pnext:hover .pnext__btn { background: var(--champagne); border-color: var(--champagne); color: var(--navy-950); }
+.pnext:hover .pnext__btn .ic { transform: translateX(4px); }
+
+/* v10 — page/project heroes on phones: photo on top, text on navy below — never over the facade */
+@media (max-width: 760px) {
+  .phero, .prj { display: block; min-height: 0; background: var(--navy-950); }
+  .phero__media, .prj__media { position: relative; inset: auto; height: 60svh; overflow: hidden; transform: none !important; }
+  .phero__media img, .prj__media img, .prj--right .prj__media img { object-position: 50% 38% !important; transform: none !important; }
+  .phero__shade, .prj__shade, .prj--right .prj__shade { position: absolute; inset: 0 0 auto 0; height: 60svh; background: linear-gradient(180deg, rgba(6, 18, 32, .55), rgba(6, 18, 32, 0) 24%, rgba(6, 18, 32, 0) 68%, var(--navy-950)) !important; }
+  .phero__content, .prj__content, .prj--right .prj__content { position: relative; width: auto !important; max-width: none !important; margin: -2.6rem 0 0 !important; padding: 0 var(--pad) 3rem !important; }
+  .crumbs { font-size: .6rem; letter-spacing: .12em; gap: .4rem; margin-bottom: 1.2rem; color: rgba(251, 248, 242, .55); }
+  .phero .eyebrow, .prj .eyebrow { font-size: .62rem; letter-spacing: .2em; margin-bottom: .9rem; }
+  .phero__title, .prj__title { margin-bottom: 1rem; }
+  .phero__lead, .prj__lead { font-size: 1rem; line-height: 1.6; color: rgba(251, 248, 242, .78); }
+}
+
+/* v10 — lapse on phones: heading sits on navy above the photo, never over the building sign */
+@media (max-width: 760px), (max-width: 1024px) and (orientation: portrait) {
+  .lapse__plates { inset: var(--lh, 34svh) 0 6.5rem 0 !important; height: auto !important; }
+  .lapse__plates::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 16%; background: linear-gradient(180deg, var(--navy-950), transparent); z-index: 3; pointer-events: none; }
+  .lapse__shade { background: none !important; }
+  .lapse__head .h2, .lapse__head .eyebrow { text-shadow: none; }
+}
+.pnext__shade { background: linear-gradient(180deg, rgba(6, 18, 32, .35), rgba(6, 18, 32, .2) 40%, rgba(6, 18, 32, .85)); }
+.pnext:hover .pnext__shade { background: linear-gradient(180deg, rgba(6, 18, 32, .25), rgba(6, 18, 32, .1) 40%, rgba(6, 18, 32, .8)); }
+.pnext__inner { justify-content: flex-end; padding-bottom: clamp(3rem, 8vh, 5rem); }
+@media (max-width: 760px) { .pnext, .pnext__inner { min-height: 62svh; } .pnext__name { font-size: clamp(2.5rem, 11vw, 3.4rem); } }
+@media (max-width: 760px) {
+  .pnext { min-height: 0; background: var(--navy-950); }
+  .pnext__media { position: relative; inset: auto; height: 46svh; }
+  .pnext__shade { inset: 0 0 auto 0; height: 46svh; background: linear-gradient(180deg, rgba(6, 18, 32, .2), rgba(6, 18, 32, 0) 50%, var(--navy-950)) !important; }
+  .pnext__inner { min-height: 0; margin-top: -2.2rem; padding-bottom: 3.4rem; justify-content: flex-start; }
+}

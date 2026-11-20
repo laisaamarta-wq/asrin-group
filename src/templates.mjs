@@ -1,7 +1,7 @@
 import { L, LANGS, LANG_META, SITE, ROUTES, UI, FORM, PROJECTS, CITY, LAGOON, GAZIPASA, ABOUT, STATS, PILLARS, PROCESS, MILESTONES, FAQ, HOME, PAGES } from './content.mjs';
 import { ALT } from './alts.mjs';
 import { LOGO_MARK, LOGO_ASRIN, LOGO_GROUP, ICONS } from './svg.mjs';
-import { lapseSection, amenSection } from './home2.mjs';
+import { lapseSection, amenSection, apxPanels } from './home2.mjs';
 
 export let IMG = {}; // filled by build: name -> {w,h,widths:[]}
 export const setImageManifest = (m) => { IMG = m; };
@@ -637,7 +637,8 @@ ${lapseSection(lang)}
   </div>
   <div class="wrap">
     <h2 class="h2" data-split>${tx(L('Size uygun daireyi seçin.', 'Choose the home that fits you.', 'Выберите свою квартиру.'), lang)}</h2>
-    <ul class="plans plans--page">${CITY.units.map((u) => `<li class="plan" data-reveal><a href="${wa(tx(UI.waProject, lang).replace('{p}', `Asrin City Gazipaşa — ${tx(u.k, lang)}`))}" target="_blank" rel="noopener" data-cursor="WhatsApp"><span class="plan__k">${tx(u.k, lang)}</span><span class="plan__d">${tx(u.d, lang)}</span><span class="plan__v">${u.v}</span><span class="plan__go">${ICONS.arrowR}</span></a></li>`).join('')}</ul>
+    <p class="acx__scale-note" data-reveal>${tx(L('Açmak için bir daireye <span class="only-hover">gelin</span><span class="only-touch">dokunun</span> — fiyatı WhatsApp\'tan sorun.', '<span class="only-hover">Hover</span><span class="only-touch">Tap</span> a home to open it — ask the price on WhatsApp.', '<span class="only-hover">Наведите на квартиру</span><span class="only-touch">Нажмите на квартиру</span>, чтобы раскрыть её, — цену можно узнать в WhatsApp.'), lang)}</p>
+    <div class="spec__apx">${apxPanels(lang, 'Asrin City Gazipaşa', ['city-gate', 'ac-golden', 'ac-sunset', 'city-vertical'])}</div>
   </div>
 </section>
 ${amenSection(lang)}
@@ -701,7 +702,7 @@ ${specifics}
 <a class="pnext" href="${projectUrl(lang, next.slug)}" data-theme="dark">
   <div class="pnext__media">${img(next.card, lang, { sizes: '100vw', alt: '' })}</div>
   <div class="pnext__shade" aria-hidden="true"></div>
-  <div class="wrap pnext__inner"><span class="eyebrow eyebrow--light">${tx(UI.cta.next, lang)}</span><span class="pnext__name">${next.name}</span>${ICONS.arrowR}</div>
+  <div class="wrap pnext__inner"><span class="eyebrow eyebrow--light">${tx(UI.cta.next, lang)}</span><span class="pnext__name">${next.name}</span><span class="pnext__btn"><span>${tx(L('Projeyi gör', 'View project', 'Смотреть проект'), lang)}</span>${ICONS.arrowR}</span></div>
 </a>
 ${contactSection(lang, { title: L(`${p.name} hakkında bilgi alın.`, `Ask us about ${p.name}.`, `Узнайте больше о ${p.name}.`), project: p.slug })}`;
 

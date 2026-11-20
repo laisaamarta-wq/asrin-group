@@ -645,3 +645,15 @@
     io.observe(r);
   }
 })();
+
+/* v10 — lapse on phones: photo starts below the heading */
+(() => {
+  const pin = document.querySelector('.lapse__pin'), head = document.querySelector('.lapse__head');
+  if (!pin || !head) return;
+  const set = () => {
+    if (innerWidth > 1024 || (innerWidth > 760 && innerWidth > innerHeight)) { pin.style.removeProperty('--lh'); return; }
+    const h = head.offsetTop + head.offsetHeight + 18;
+    pin.style.setProperty('--lh', `${h}px`);
+  };
+  set(); addEventListener('resize', set); document.fonts && document.fonts.ready.then(set);
+})();
