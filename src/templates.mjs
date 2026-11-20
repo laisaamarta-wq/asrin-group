@@ -594,7 +594,7 @@ export function projectsPage(lang) {
       ${tabs.map(([k, l, n], i) => `<button role="tab" id="${k}" class="tab${i === 0 ? ' is-active' : ''}" aria-selected="${i === 0}" data-filter="${k}">${tx(l, lang)}<sup>${n}</sup></button>`).join('')}
     </div>
     <div class="pgrid" data-grid>
-      ${PROJECTS.map((p, i) => projectCard(p, lang, { cls: i < 2 ? 'pcard--wide' : '', sizes: i < 2 ? '(max-width: 760px) 92vw, 50vw' : '(max-width: 760px) 92vw, 33vw' })).join('')}
+      ${PROJECTS.map((p) => projectCard(p, lang, { sizes: '(max-width: 760px) 92vw, (max-width: 1024px) 46vw, 31vw' })).join('')}
     </div>
     <div class="empty" data-empty="building" hidden>
       <p>${tx(PAGES.projects.emptyBuilding, lang)}</p>${btnArrow(url(lang, 'contact'), tx(PAGES.projects.notify, lang))}
@@ -756,9 +756,9 @@ ${specifics}
     <div class="gal__head"><div>${eyebrow(`${p.gallery.length} ${tx(UI.labels.photoCount, lang)}${isVillas ? ' · ' + tx(L('tüm villalar', 'all villas', 'все виллы'), lang) : ''}`)}<h2 class="h2">${isVillas ? tx(L('Tüm <em>villalarımız</em>', 'All our <em>villas</em>', 'Все наши <em>виллы</em>'), lang) : tx(UI.labels.gallery, lang)}</h2>${isVillas ? `<p class="gal__note">${tx(L('Önce yeni beyaz villamız, ardından taş duvarlı, kemerli teraslı diğer Special Villas.', 'First our new white villa, then the other Special Villas — stone walls, arched terraces and sea-view pools.', 'Сначала — наша новая белая вилла, дальше — другие Special Villas: каменная кладка, арочные террасы и бассейны с видом на море.'), lang)}</p>` : ''}</div></div>
     ${isVillas ? (() => {
       const nvs = p.gallery.filter((n) => n.startsWith('nv-')), rest = p.gallery.filter((n) => !n.startsWith('nv-'));
-      const grp = (label, list) => `<h3 class="gal__sub"><span>${tx(label, lang)}</span><i>${list.length}</i></h3><div class="masonry">${list.map((n) => lbFig(n, lang, p.slug, { sizes: '(max-width: 760px) 92vw, 33vw' })).join('')}</div>`;
+      const grp = (label, list) => `<h3 class="gal__sub"><span>${tx(label, lang)}</span><i>${list.length}</i></h3><div class="masonry">${list.map((n) => lbFig(n, lang, p.slug, { sizes: '(max-width: 760px) 92vw, 56vw' })).join('')}</div>`;
       return grp(L('Yeni villa', 'The new villa', 'Новая вилла'), nvs) + grp(L('Diğer villalar', 'Our other villas', 'Другие виллы'), rest);
-    })() : `<div class="masonry">${p.gallery.map((n) => lbFig(n, lang, p.slug, { sizes: '(max-width: 760px) 92vw, 33vw' })).join('')}</div>`}
+    })() : `<div class="masonry">${p.gallery.map((n) => lbFig(n, lang, p.slug, { sizes: '(max-width: 760px) 92vw, 56vw' })).join('')}</div>`}
   </div>
 </section>
 <a class="pnext" href="${projectUrl(lang, next.slug)}" data-theme="dark">

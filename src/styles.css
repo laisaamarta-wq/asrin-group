@@ -1974,3 +1974,52 @@ strong { font-weight: 600; }
 .gal__sub { display: flex; align-items: baseline; gap: .8rem; margin: clamp(2.2rem, 4vw, 3.4rem) 0 1.1rem; padding-top: 1.1rem; border-top: 1px solid rgba(176, 141, 87, .35); font-family: var(--serif); font-weight: 400; font-size: clamp(1.45rem, 1.2rem + .7vw, 1.9rem); color: var(--navy-900); }
 .gal__sub i { font-style: normal; font-family: var(--sans); font-size: .7rem; letter-spacing: .18em; color: var(--gold-deep); }
 .gal__head + .gal__sub { margin-top: clamp(1.6rem, 3vw, 2.4rem); }
+
+/* v14 — compact: project galleries scroll sideways on desktop too */
+@media (min-width: 761px) {
+  .pgal .masonry { columns: auto !important; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; scroll-behavior: smooth; }
+  .pgal .masonry::-webkit-scrollbar { display: none; }
+  .pgal .masonry > * { flex: none; margin: 0 !important; scroll-snap-align: start; }
+  .pgal .masonry .lb { display: block; height: clamp(300px, 30vw, 440px); overflow: hidden; border-radius: 4px; }
+  .pgal .masonry .lb img { height: 100% !important; width: auto; max-width: none; object-fit: cover; }
+  .pgal .gcar__ui { display: flex; align-items: center; gap: 1.2rem; margin-top: 1.2rem; }
+  .pgal .gcar__n { font-family: var(--serif); font-size: 1rem; color: var(--ink-3); white-space: nowrap; }
+  .pgal .gcar__n b { font-weight: 400; font-size: 1.5rem; color: var(--navy-900); }
+  .pgal .gcar__bar { flex: 1; height: 1px; background: var(--line); position: relative; overflow: hidden; }
+  .pgal .gcar__bar i { position: absolute; inset: 0; background: var(--gold); transform-origin: 0 50%; transform: scaleX(0); transition: transform .4s var(--ease); }
+  .pgal .gcar__hint { display: none; }
+}
+.gcar__nav { display: none; gap: .5rem; }
+.gcar__nav button { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: none; color: var(--navy-900); display: grid; place-items: center; cursor: pointer; transition: background .35s, color .35s, border-color .35s; }
+.gcar__nav button:hover { background: var(--navy-900); color: var(--ivory-50); border-color: var(--navy-900); }
+.gcar__nav button:disabled { opacity: .3; pointer-events: none; }
+.gcar__nav .ic { width: 16px; height: 16px; }
+.gcar__nav button:first-child .ic { transform: rotate(180deg); }
+@media (min-width: 761px) { .pgal .gcar__nav { display: flex; } }
+.gal__sub + .masonry { margin-top: 0; }
+
+/* v14 — compact accordion on desktop */
+@media (min-width: 761px) {
+  .insp__row { padding: 1.4rem 0; }
+  .insp__t { font-size: clamp(1.6rem, 1.2rem + 1.1vw, 2.3rem); }
+  .insp__plus { width: 42px; height: 42px; }
+  .insp__inner { grid-template-columns: 240px 1fr; gap: 2.4rem; }
+  .insp__img { aspect-ratio: 4 / 3; }
+  .insp__list { grid-template-columns: repeat(3, 1fr); gap: .8rem 2rem; padding-top: .2rem; }
+  .insp__list li { font-size: .9rem; }
+  .insp__item.is-open .insp__inner { padding-bottom: 1.8rem; }
+  .route { margin-top: 3.2rem; }
+  .route__stop b { font-size: clamp(2rem, 1.4rem + 1.6vw, 3rem); }
+}
+
+/* v14 — overall rhythm a little tighter */
+:root { --sec: clamp(4.5rem, 2.5rem + 7vw, 8.5rem); }
+
+/* v14 — projects page: six equal compact cards */
+.pgrid { grid-template-columns: repeat(3, 1fr); gap: clamp(1.6rem, 2.6vw, 2.6rem) clamp(1rem, 1.6vw, 1.6rem); }
+.pgrid .pcard { grid-column: auto; gap: 1rem; }
+.pgrid .pcard__media { aspect-ratio: 4 / 3; }
+.pgrid .pcard__title { font-size: clamp(1.5rem, 1.25rem + .7vw, 2rem); }
+.pgrid .pcard__go { width: 42px; height: 42px; }
+@media (max-width: 1024px) { .pgrid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 760px) { .pgrid { grid-template-columns: 1fr; } }

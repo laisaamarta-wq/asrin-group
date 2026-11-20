@@ -606,20 +606,25 @@
 
 /* v7: phone galleries become swipeable carousels with a counter */
 (() => {
-  if (window.innerWidth > 760) return;
+  const mobile = window.innerWidth <= 760;
   const lang = document.documentElement.lang;
   const hint = { tr: 'Kaydırın →', en: 'Swipe →', ru: 'Листайте →' }[lang] || 'Swipe →';
-  document.querySelectorAll('.masonry').forEach((m) => {
+  const arrow = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16M14 6l6 6-6 6"/></svg>';
+  document.querySelectorAll(mobile ? '.masonry' : '.pgal .masonry').forEach((m) => {
     const ui = document.createElement('div'); ui.className = 'gcar__ui';
-    ui.innerHTML = '<span class="gcar__n"><b>01</b> / <span></span></span><span class="gcar__bar"><i></i></span><span class="gcar__hint">' + hint + '</span>';
+    ui.innerHTML = '<span class="gcar__n"><b>01</b> / <span></span></span><span class="gcar__bar"><i></i></span><span class="gcar__hint">' + hint + '</span><span class="gcar__nav"><button type="button" aria-label="Previous">' + arrow + '</button><button type="button" aria-label="Next">' + arrow + '</button></span>';
     m.after(ui);
     const nb = ui.querySelector('b'), tot = ui.querySelector('.gcar__n span'), bar = ui.querySelector('i');
+    const [prev, next] = ui.querySelectorAll('.gcar__nav button');
+    prev.addEventListener('click', () => m.scrollBy({ left: -m.clientWidth * 0.8, behavior: 'smooth' }));
+    next.addEventListener('click', () => m.scrollBy({ left: m.clientWidth * 0.8, behavior: 'smooth' }));
     const upd = () => {
       const items = [...m.children].filter((c) => !c.hidden && c.offsetParent !== null);
       const n = items.length || 1; tot.textContent = String(n).padStart(2, '0');
-      const w = items[0] ? items[0].getBoundingClientRect().width + 10 : 1;
-      const i = Math.min(n - 1, Math.round(m.scrollLeft / w));
+      const ml = m.getBoundingClientRect().left; let i = 0; items.forEach((c, k) => { if (c.getBoundingClientRect().left - ml <= 20) i = k; });
+      if (m.scrollLeft + m.clientWidth >= m.scrollWidth - 4) i = n - 1;
       nb.textContent = String(i + 1).padStart(2, '0'); bar.style.transform = `scaleX(${(i + 1) / n})`;
+      prev.disabled = m.scrollLeft <= 4; next.disabled = m.scrollLeft + m.clientWidth >= m.scrollWidth - 4;
     };
     let raf = 0; m.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(upd); }, { passive: true });
     upd();
