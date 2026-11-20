@@ -424,9 +424,9 @@ export const PILLARS = [
 ];
 
 export const PROCESS = [
-  { t: L('Proje geliştirme', 'Project development', 'Разработка проекта') },
-  { t: L('İnşaat', 'Construction', 'Строительство') },
-  { t: L('Anahtar teslim', 'Turnkey delivery', 'Сдача «под ключ»') },
+  { t: L('Proje geliştirme', 'Project development', 'Разработка проекта'), d: L('Arsa, mimari ve izinler en baştan planlanır.', 'Land, architecture and permits are planned from the very start.', 'Участок, архитектура и разрешения продуманы с самого начала.') },
+  { t: L('İnşaat', 'Construction', 'Строительство'), d: L('Malzeme ve işçilik her aşamada denetlenir.', 'Materials and workmanship are checked at every stage.', 'Материалы и работа проверяются на каждом этапе.') },
+  { t: L('Anahtar teslim', 'Turnkey delivery', 'Сдача «под ключ»'), d: L('Yaşamaya hazır, tamamlanmış bir ev teslim alırsınız.', 'You receive a finished home, ready to live in.', 'Вы получаете готовый дом, в который можно сразу въехать.') },
 ];
 
 export const MILESTONES = [

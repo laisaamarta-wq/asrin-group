@@ -211,6 +211,23 @@ ${footer(lang, alternates)}
 }
 
 // ---------- Shared components ----------
+const processBlock = (lang) => {
+  const pics = ['ac-topdown-gold', 'city-drone-front', 'ac-balcony'];
+  return `<div class="pr3" data-pr3>
+    <div class="pr3__in">
+      <header class="pr3__head">
+        <p class="pr3__eb">${tx(L('Süreç', 'The process', 'Процесс'), lang)}</p>
+        <h2 class="pr3__title">${tx(L('Plandan <em>anahtara.</em>', 'From plan <em>to keys.</em>', 'От проекта <em>до ключей.</em>'), lang)}</h2>
+        <p class="pr3__lead">${tx(L('Tek bir ekip, tek bir sorumluluk — arsadan teslim gününe kadar.', 'One team, one responsibility — from the land to the day you get the keys.', 'Одна команда и одна ответственность — от участка до дня, когда вы получаете ключи.'), lang)}</p>
+      </header>
+      <div class="pr3__rail" aria-hidden="true"><i></i></div>
+      <ol class="pr3__list">${PROCESS.map((s, i) => `<li class="pr3__step" data-pr3-step>
+        <figure class="pr3__img">${img(pics[i], lang, { sizes: '(max-width: 760px) 92vw, 40vw' })}<span class="pr3__num" aria-hidden="true">0${i + 1}</span></figure>
+        <div class="pr3__txt"><span class="pr3__dot" aria-hidden="true"></span><h3>${tx(s.t, lang)}</h3><p>${tx(s.d, lang)}</p></div>
+      </li>`).join('')}</ol>
+    </div>
+  </div>`;
+};
 const eyebrow = (t, cls = '') => `<p class="eyebrow ${cls}">${t}</p>`;
 const btnArrow = (href, label, cls = 'btn--dark', ext = false) => `<a class="btn ${cls}" href="${href}"${ext ? ' target="_blank" rel="noopener"' : ''}><span>${label}</span>${ICONS.arrowR}</a>`;
 const statusLabel = (p, lang) => tx(UI.status[p.status], lang);
@@ -453,9 +470,7 @@ export function homePage(lang) {
     </div>
     <ol class="pillars">${PILLARS.map((p, i) => `<li class="pillar" data-reveal><span class="pillar__n">0${i + 1}</span><h3>${tx(p.t, lang)}</h3><p>${tx(p.d, lang)}</p></li>`).join('')}</ol>
   </div>
-  <div class="wrap process" data-reveal>
-    ${PROCESS.map((s, i) => `<div class="process__step"><span>0${i + 1}</span><b>${tx(s.t, lang)}</b></div>`).join(`<i class="process__line" aria-hidden="true"></i>`)}
-  </div>
+  ${processBlock(lang)}
 </section>
 
 <section class="place" data-theme="dark">
@@ -517,9 +532,7 @@ export function aboutPage(lang) {
     </div>
     <ol class="pillars">${PILLARS.map((p, i) => `<li class="pillar" data-reveal><span class="pillar__n">0${i + 1}</span><h3>${tx(p.t, lang)}</h3><p>${tx(p.d, lang)}</p></li>`).join('')}</ol>
   </div>
-  <div class="wrap process" data-reveal>
-    ${PROCESS.map((s, i) => `<div class="process__step"><span>0${i + 1}</span><b>${tx(s.t, lang)}</b></div>`).join(`<i class="process__line" aria-hidden="true"></i>`)}
-  </div>
+  ${processBlock(lang)}
 </section>
 <section class="team" id="team" data-theme="dark">
   <div class="team__media" data-parallax="0.15">${img('city-pool', lang, { sizes: '100vw' })}</div>

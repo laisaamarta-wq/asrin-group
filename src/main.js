@@ -626,3 +626,25 @@
     document.addEventListener('click', (e) => { if (e.target.closest('[data-filter]')) setTimeout(() => { m.scrollLeft = 0; upd(); }, 60); });
   });
 })();
+
+/* v8 — process block: reveal + rail progress */
+(() => {
+  const root = document.querySelector('[data-pr3]');
+  if (!root) return;
+  const steps = [...root.querySelectorAll('[data-pr3-step]')];
+  const rail = root.querySelector('.pr3__rail');
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('is-in'); io.unobserve(e.target);
+  }), { threshold: 0.18 });
+  io.observe(root); steps.forEach((s) => io.observe(s));
+  let raf = 0;
+  const upd = () => {
+    raf = 0;
+    const r = root.getBoundingClientRect(), vh = innerHeight;
+    const p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height * 0.75)));
+    if (rail) rail.style.setProperty('--p', p.toFixed(3));
+  };
+  addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(upd); }, { passive: true });
+  addEventListener('resize', upd); upd();
+})();
