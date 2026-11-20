@@ -668,3 +668,14 @@
   const b = document.querySelector('[data-nv-all]'); if (!b) return;
   b.addEventListener('click', (e) => { e.preventDefault(); const first = document.querySelector('.nv .lb'); first && first.click(); });
 })();
+
+/* v17 — milestones strip arrows */
+(() => {
+  const l = document.querySelector('[data-tl]'); if (!l) return;
+  const p = document.querySelector('[data-tl-prev]'), n = document.querySelector('[data-tl-next]');
+  const step = () => (l.firstElementChild ? l.firstElementChild.getBoundingClientRect().width + 20 : 300);
+  p && p.addEventListener('click', () => l.scrollBy({ left: -step(), behavior: 'smooth' }));
+  n && n.addEventListener('click', () => l.scrollBy({ left: step(), behavior: 'smooth' }));
+  const upd = () => { if (p) p.disabled = l.scrollLeft <= 4; if (n) n.disabled = l.scrollLeft + l.clientWidth >= l.scrollWidth - 4; };
+  l.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
+})();

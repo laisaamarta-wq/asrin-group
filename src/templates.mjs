@@ -572,15 +572,21 @@ ${contactSection(lang)}`;
 }
 
 function timeline(lang) {
-  return `<section class="tl" data-theme="light">
+  const arrow = ICONS.arrowR;
+  return `<section class="tl tl2" data-theme="light">
   <div class="wrap">
-    ${eyebrow(tx(PAGES.news.title, lang))}
-    <h2 class="h2" data-split>${tx(PAGES.news.lead, lang)}</h2>
-    <ol class="tl__list">
-      ${MILESTONES.map((m) => `<li class="tl__item" data-reveal>
-        <span class="tl__y">${tx(m.y, lang)}</span>
-        <div class="tl__body"><h3>${tx(m.t, lang)}</h3><p>${tx(m.d, lang)}</p>${m.p ? `<a class="link-arrow" href="${projectUrl(lang, m.p)}"><span>${tx(UI.cta.discover, lang)}</span>${ICONS.arrowR}</a>` : ''}</div>
-        ${m.img ? `<figure class="tl__img">${img(m.img, lang, { sizes: '(max-width: 760px) 92vw, 30vw' })}</figure>` : '<span></span>'}
+    <div class="tl2__head">
+      <div>${eyebrow(tx(PAGES.news.title, lang))}<h2 class="h2" data-split>${tx(PAGES.news.lead, lang)}</h2></div>
+      <div class="tl2__nav"><button type="button" data-tl-prev aria-label="Previous">${arrow}</button><button type="button" data-tl-next aria-label="Next">${arrow}</button></div>
+    </div>
+    <ol class="tl2__list" data-tl>
+      ${MILESTONES.map((m) => `<li class="tl2__item">
+        <span class="tl2__dot" aria-hidden="true"></span>
+        <span class="tl2__y">${tx(m.y, lang)}</span>
+        <figure class="tl2__img${m.img ? '' : ' tl2__img--plain'}">${m.img ? img(m.img, lang, { sizes: '(max-width: 760px) 70vw, 22vw' }) : `<span class="tl2__mark"><svg viewBox="0 0 84 67" aria-hidden="true"><path d="${LOGO_MARK}"/></svg></span>`}</figure>
+        <h3>${tx(m.t, lang)}</h3>
+        <p>${tx(m.d, lang)}</p>
+        ${m.p ? `<a class="tl2__link" href="${projectUrl(lang, m.p)}">${tx(UI.cta.discover, lang)} ${arrow}</a>` : ''}
       </li>`).join('')}
     </ol>
   </div>
