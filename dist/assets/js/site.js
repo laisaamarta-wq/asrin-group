@@ -603,3 +603,26 @@
     p.addEventListener('click', (e) => { if (!p.classList.contains('is-on')) { e.preventDefault(); on(p); } });
   });
 })();
+
+/* v7: phone galleries become swipeable carousels with a counter */
+(() => {
+  if (window.innerWidth > 760) return;
+  const lang = document.documentElement.lang;
+  const hint = { tr: 'Kaydırın →', en: 'Swipe →', ru: 'Листайте →' }[lang] || 'Swipe →';
+  document.querySelectorAll('.masonry').forEach((m) => {
+    const ui = document.createElement('div'); ui.className = 'gcar__ui';
+    ui.innerHTML = '<span class="gcar__n"><b>01</b> / <span></span></span><span class="gcar__bar"><i></i></span><span class="gcar__hint">' + hint + '</span>';
+    m.after(ui);
+    const nb = ui.querySelector('b'), tot = ui.querySelector('.gcar__n span'), bar = ui.querySelector('i');
+    const upd = () => {
+      const items = [...m.children].filter((c) => !c.hidden && c.offsetParent !== null);
+      const n = items.length || 1; tot.textContent = String(n).padStart(2, '0');
+      const w = items[0] ? items[0].getBoundingClientRect().width + 10 : 1;
+      const i = Math.min(n - 1, Math.round(m.scrollLeft / w));
+      nb.textContent = String(i + 1).padStart(2, '0'); bar.style.transform = `scaleX(${(i + 1) / n})`;
+    };
+    let raf = 0; m.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(upd); }, { passive: true });
+    upd();
+    document.addEventListener('click', (e) => { if (e.target.closest('[data-filter]')) setTimeout(() => { m.scrollLeft = 0; upd(); }, 60); });
+  });
+})();

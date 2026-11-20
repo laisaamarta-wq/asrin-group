@@ -684,9 +684,9 @@ ${contactSection(lang, { title: L(`${p.name} hakkında bilgi alın.`, `Ask us ab
 }
 
 function filmCard(f, lang, group) {
-  return `<a class="film lb lb--video" href="/assets/video/${f.file}.mp4" data-lightbox="${group}" data-video="1" data-caption="${esc(tx(f.title, lang))} — Blue Lagoon Village">
-    <span class="film__media">${img(f.poster, lang, { sizes: '(max-width: 760px) 92vw, 33vw' })}<span class="lb__play">${ICONS.play}</span></span>
-    <span class="film__t">${tx(f.title, lang)}</span>
+  return `<a class="film film--live lb lb--video" href="/assets/video/${f.file}.mp4" data-lightbox="${group}" data-video="1" data-caption="${esc(tx(f.title, lang))} — Blue Lagoon Village">
+    <span class="film__media"><video muted loop playsinline preload="none" poster="${full(f.poster)}" data-autoplay aria-hidden="true"><source src="/assets/video/${f.file}.mp4" type="video/mp4"></video>
+    <span class="film__t">${tx(f.title, lang)}</span><span class="film__x" aria-hidden="true">${ICONS.arrowR}</span></span>
   </a>`;
 }
 
@@ -720,7 +720,7 @@ export function videosPage(lang) {
 <section class="vids" data-theme="dark">
   <div class="wrap">
     <a class="vfeature lb lb--video" href="/assets/video/${first.file}.mp4" data-lightbox="films" data-video="1" data-caption="${esc(tx(first.title, lang))} — Blue Lagoon Village">
-      ${img(first.poster, lang, { sizes: '(max-width: 760px) 92vw, 80vw' })}<span class="lb__play lb__play--xl">${ICONS.play}</span>
+      <video class="vfeature__v" muted loop playsinline preload="none" poster="${full(first.poster)}" data-autoplay aria-hidden="true"><source src="/assets/video/${first.file}.mp4" type="video/mp4"></video>
       <span class="vfeature__t"><span class="eyebrow eyebrow--light">Blue Lagoon Village</span><b>${tx(first.title, lang)}</b></span>
     </a>
     <div class="films__grid">${rest.map((f) => filmCard(f, lang, 'films')).join('')}</div>
