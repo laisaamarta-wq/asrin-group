@@ -105,8 +105,6 @@ function nav(lang, alternates, current) {
   const menuSmall = [
     [url(lang, 'about') + '#team', UI.nav.team],
     [url(lang, 'projects') + '#completed', UI.nav.completed],
-    [url(lang, 'projects') + '#building', UI.nav.building],
-    [url(lang, 'projects') + '#planned', UI.nav.planned],
     [url(lang, 'videos'), UI.nav.videos],
     [url(lang, 'news'), UI.nav.news],
     [url(lang, 'faq'), UI.nav.faq],
@@ -585,7 +583,7 @@ function timeline(lang) {
 
 // ---------- PROJECTS ----------
 export function projectsPage(lang) {
-  const tabs = [['all', PAGES.projects.all, 6], ['completed', UI.nav.completed, 6], ['building', UI.nav.building, 0], ['planned', UI.nav.planned, 0]];
+  const tabs = [['completed', UI.nav.completed, PROJECTS.length]];
   const body = `${pageHero(lang, { title: tx(PAGES.projects.title, lang), lead: tx(PAGES.projects.lead, lang), image: 'ac-road', eyebrowText: 'ASRIN GROUP', crumbs: [[null, tx(PAGES.projects.title, lang)]] })}
 <section class="plist" data-theme="light">
   <div class="wrap">
