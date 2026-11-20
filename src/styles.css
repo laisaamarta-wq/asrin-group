@@ -2024,3 +2024,9 @@ strong { font-weight: 600; }
 @media (max-width: 1024px) { .pgrid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 760px) { .pgrid { grid-template-columns: 1fr; } }
 .nv__more { display: none; }
+
+/* v15 — lightbox: tall photos always fit the screen */
+.lightbox { height: 100svh; }
+.lightbox__stage { overflow: hidden; }
+.lightbox__stage img, .lightbox__stage video { max-width: calc(100vw - 11rem); max-height: calc(100svh - 10.5rem); }
+@media (max-width: 760px) { .lightbox__stage img, .lightbox__stage video { max-width: calc(100vw - 1.2rem); max-height: calc(100svh - 11rem); } }
