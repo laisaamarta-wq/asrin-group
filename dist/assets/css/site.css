@@ -2087,9 +2087,9 @@ strong { font-weight: 600; }
 .form__grid { gap: .9rem; }
 .field { gap: .45rem; }
 .field span { font-size: .64rem; letter-spacing: .18em; }
-.field input, .field select, .field textarea { background: var(--ivory-50); border: 1px solid var(--line); border-radius: 12px; padding: .85rem 1rem; font-size: .98rem; transition: border-color .3s, box-shadow .3s, background .3s; }
+.field input, .field select, .field textarea { background-color: var(--ivory-50); border: 1px solid var(--line); border-radius: 12px; padding: .85rem 1rem; font-size: .98rem; transition: border-color .3s, box-shadow .3s, background .3s; }
 .field select { background-color: var(--ivory-50); background-position: calc(100% - 18px) 55%, calc(100% - 13px) 55%; padding-right: 2.4rem; }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); background: #fff; box-shadow: 0 0 0 4px rgba(176, 141, 87, .14); }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); background-color: #fff; box-shadow: 0 0 0 4px rgba(176, 141, 87, .14); }
 .field textarea { min-height: 120px; }
 .form__send { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-top: 1.4rem; }
 .form__send .btn { justify-content: center; }
@@ -2117,3 +2117,11 @@ strong { font-weight: 600; }
   .field textarea { min-height: 96px; }
   .form__title { font-size: 1.8rem; margin-bottom: 1rem; }
 }
+
+/* v16 — fields inside dark contact sections */
+.contact .field input, .contact .field select, .contact .field textarea { background-color: rgba(251, 248, 242, .06); border: 1px solid rgba(251, 248, 242, .18); border-radius: 12px; color: var(--ivory-50); padding: .75rem 1rem; }
+.contact .field select { background-color: rgba(251, 248, 242, .06); padding-right: 2.4rem; }
+.contact .field select option { color: var(--ink); background: #fff; }
+.contact .field input:focus, .contact .field select:focus, .contact .field textarea:focus { background-color: rgba(251, 248, 242, .1); border-color: var(--champagne); box-shadow: 0 0 0 4px rgba(207, 181, 138, .16); }
+.contact .field input:-webkit-autofill { -webkit-text-fill-color: var(--ivory-50); -webkit-box-shadow: 0 0 0 40px #1a2a3f inset; }
+.field select, .contact .field select { background-size: 5px 5px; background-repeat: no-repeat; background-position: calc(100% - 18px) 55%, calc(100% - 13px) 55%; }
