@@ -2209,3 +2209,4 @@ strong { font-weight: 600; }
   .team2__img { min-height: 0; aspect-ratio: 16 / 10; }
   .team2__txt { padding: 1.6rem 1.3rem 1.8rem; }
 }
+.story .stat, .story .stat + .stat { border-top: 0 !important; border-left: 0 !important; }
