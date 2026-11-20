@@ -165,7 +165,7 @@ function footer(lang, alternates) {
       </nav>
       <div class="fm__contact">
         <a href="${SITE.phoneHref}">${SITE.phoneDisplay}</a>
-        <a class="fm__wa" href="${wa(tx(UI.waText, lang))}" target="_blank" rel="noopener">${ICONS.whatsapp}<span>WhatsApp</span></a>
+        <a class="fm__wa" href="${wa(tx(UI.waText, lang))}" target="_blank" rel="noopener">${ICONS.whatsapp}<span>WhatsApp ${SITE.phoneDisplay}</span></a>
         <a href="mailto:${SITE.email}">${SITE.email}</a>
       </div>
     </div>
@@ -744,8 +744,12 @@ ${factsBar}
 ${specifics}
 <section class="pgal" id="gallery" data-theme="light">
   <div class="wrap">
-    <div class="gal__head"><div>${eyebrow(`${p.gallery.length} ${tx(UI.labels.photoCount, lang)}`)}<h2 class="h2">${tx(UI.labels.gallery, lang)}</h2></div></div>
-    <div class="masonry">${p.gallery.map((n) => lbFig(n, lang, p.slug, { sizes: '(max-width: 760px) 92vw, 33vw' })).join('')}</div>
+    <div class="gal__head"><div>${eyebrow(`${p.gallery.length} ${tx(UI.labels.photoCount, lang)}${isVillas ? ' · ' + tx(L('tüm villalar', 'all villas', 'все виллы'), lang) : ''}`)}<h2 class="h2">${isVillas ? tx(L('Tüm <em>villalarımız</em>', 'All our <em>villas</em>', 'Все наши <em>виллы</em>'), lang) : tx(UI.labels.gallery, lang)}</h2>${isVillas ? `<p class="gal__note">${tx(L('Önce yeni beyaz villamız, ardından taş duvarlı, kemerli teraslı diğer Special Villas.', 'First our new white villa, then the other Special Villas — stone walls, arched terraces and sea-view pools.', 'Сначала — наша новая белая вилла, дальше — другие Special Villas: каменная кладка, арочные террасы и бассейны с видом на море.'), lang)}</p>` : ''}</div></div>
+    ${isVillas ? (() => {
+      const nvs = p.gallery.filter((n) => n.startsWith('nv-')), rest = p.gallery.filter((n) => !n.startsWith('nv-'));
+      const grp = (label, list) => `<h3 class="gal__sub"><span>${tx(label, lang)}</span><i>${list.length}</i></h3><div class="masonry">${list.map((n) => lbFig(n, lang, p.slug, { sizes: '(max-width: 760px) 92vw, 33vw' })).join('')}</div>`;
+      return grp(L('Yeni villa', 'The new villa', 'Новая вилла'), nvs) + grp(L('Diğer villalar', 'Our other villas', 'Другие виллы'), rest);
+    })() : `<div class="masonry">${p.gallery.map((n) => lbFig(n, lang, p.slug, { sizes: '(max-width: 760px) 92vw, 33vw' })).join('')}</div>`}
   </div>
 </section>
 <a class="pnext" href="${projectUrl(lang, next.slug)}" data-theme="dark">

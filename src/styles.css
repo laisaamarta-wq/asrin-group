@@ -1969,3 +1969,8 @@ strong { font-weight: 600; }
 }
 .fm__wa { display: inline-flex; align-items: center; gap: .5rem; }
 .fm__wa .ic { width: 16px; height: 16px; color: #3fbf7f; }
+.gal__note { margin: 1rem 0 0; max-width: 46ch; font-size: .98rem; line-height: 1.6; color: var(--ink-2); }
+.gal__head .h2 em { font-style: italic; color: var(--gold-deep); }
+.gal__sub { display: flex; align-items: baseline; gap: .8rem; margin: clamp(2.2rem, 4vw, 3.4rem) 0 1.1rem; padding-top: 1.1rem; border-top: 1px solid rgba(176, 141, 87, .35); font-family: var(--serif); font-weight: 400; font-size: clamp(1.45rem, 1.2rem + .7vw, 1.9rem); color: var(--navy-900); }
+.gal__sub i { font-style: normal; font-family: var(--sans); font-size: .7rem; letter-spacing: .18em; color: var(--gold-deep); }
+.gal__head + .gal__sub { margin-top: clamp(1.6rem, 3vw, 2.4rem); }

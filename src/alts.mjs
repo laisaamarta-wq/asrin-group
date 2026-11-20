@@ -1,6 +1,9 @@
 import { L } from './content.mjs';
 // Localised alt text for every image.
 export const ALT = {
+  'vl-arches': L('Special Villas: kemerli teraslar, taş duvarlar ve begonviller', 'Special Villas: arched terraces, stone walls and bougainvillea', 'Special Villas: арочные террасы, каменная кладка и бугенвиллея'),
+  'vl-pool-palms': L('Special Villas: palmiyeler arasında denize bakan havuz', 'Special Villas: pool among palm trees facing the sea', 'Special Villas: бассейн среди пальм с видом на море'),
+  'vl-terrace-stone': L('Special Villas: taş duvarlı teraslar ve havuz', 'Special Villas: stone-walled terraces by the pool', 'Special Villas: террасы с каменной кладкой у бассейна'),
   'nv-pool-sun': L('Special Villas: denize bakan teras ve sonsuzluk havuzu', 'Special Villas: terrace and infinity pool facing the sea', 'Special Villas: терраса и бассейн-инфинити с видом на море'),
   'nv-facade': L('Special Villas: yeni beyaz villa ve traverten teras', 'Special Villas: the new white villa and its travertine terrace', 'Special Villas: новая белая вилла и травертиновая терраса'),
   'nv-living': L('Special Villas: deniz manzaralı, yerden tavana camlı salon', 'Special Villas: living room with floor-to-ceiling sea-view glazing', 'Special Villas: гостиная с панорамными окнами на море'),
