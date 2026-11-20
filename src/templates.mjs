@@ -532,7 +532,10 @@ export function aboutPage(lang) {
   const body = `${pageHero(lang, { title: tx(PAGES.about.title, lang), lead: tx(ABOUT.statement, lang), image: 'ac-lookup', eyebrowText: 'ASRIN İNŞAAT · 1990', crumbs: [[null, tx(PAGES.about.title, lang)]] })}
 <section class="story" data-theme="light">
   <div class="wrap story__grid">
-    <div class="story__years" aria-hidden="true"><span>1990</span><span>1999</span></div>
+    <aside class="story__aside">
+      <figure class="story__fig" data-clip>${img('a1011-main', lang, { sizes: '(max-width: 760px) 92vw, 34vw' })}</figure>
+      <ol class="story__tl">${MILESTONES.slice(0, 2).map((m) => `<li><b>${m.y}</b><span>${tx(m.t, lang)}</span></li>`).join('')}</ol>
+    </aside>
     <div class="story__text">
       <p class="lede" data-reveal>${tx(ABOUT.p1, lang)}</p>
       <p data-reveal>${tx(ABOUT.p2, lang)}</p>

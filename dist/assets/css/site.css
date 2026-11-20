@@ -2030,3 +2030,24 @@ strong { font-weight: 600; }
 .lightbox__stage { overflow: hidden; }
 .lightbox__stage img, .lightbox__stage video { max-width: calc(100vw - 11rem); max-height: calc(100svh - 10.5rem); }
 @media (max-width: 760px) { .lightbox__stage img, .lightbox__stage video { max-width: calc(100vw - 1.2rem); max-height: calc(100svh - 11rem); } }
+
+/* v15 — About: story with photo, mini timeline and a pull-quote card */
+.story__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); align-items: start; }
+.story__aside { position: sticky; top: calc(var(--nav-h, 80px) + 2rem); display: grid; gap: 1.6rem; }
+.story__fig { margin: 0; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 2px; }
+.story__fig img { width: 100%; height: 100%; object-fit: cover; }
+.story__tl { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.story__tl li { display: grid; gap: .35rem; padding-top: .9rem; border-top: 1px solid rgba(176, 141, 87, .45); }
+.story__tl b { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 1.5rem + 1.2vw, 2.8rem); line-height: 1; color: var(--navy-900); }
+.story__tl li:last-child b { color: var(--gold-deep); }
+.story__tl span { font-size: .82rem; line-height: 1.45; color: var(--ink-3); }
+.story__text { gap: 1.4rem; }
+.story__text .lede { color: var(--navy-900); }
+.story__quote { position: relative; margin-top: .8rem; border-left: 0; padding: clamp(1.8rem, 3vw, 2.6rem) clamp(1.6rem, 3vw, 2.6rem) clamp(1.6rem, 3vw, 2.4rem) clamp(3.4rem, 5vw, 4.6rem); background: var(--navy-900); color: rgba(251, 248, 242, .82); border-radius: 2px; font-size: clamp(1.35rem, 1.1rem + .8vw, 1.9rem); }
+.story__quote::before { content: '“'; position: absolute; left: clamp(1rem, 2vw, 1.6rem); top: .1em; font-family: var(--serif); font-style: normal; font-size: 4.2rem; line-height: 1; color: var(--champagne); }
+.story__quote strong, .story__quote b { color: var(--champagne); font-weight: 400; }
+@media (max-width: 760px) {
+  .story__grid { grid-template-columns: 1fr; }
+  .story__aside { position: static; }
+  .story__fig { aspect-ratio: 16 / 11; }
+}
