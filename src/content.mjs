@@ -199,7 +199,7 @@ export const PROJECTS = [
     slug: 'special-villas',
     name: 'Special Villas',
     status: 'completed', year: null,
-    cover: 'nv-pool-sun', card: 'nv-facade',
+    cover: 'nv-pool', card: 'nv-facade',
     location: L('Gazipaşa, Antalya', 'Gazipaşa, Antalya', 'Газипаша, Анталья'),
     type: L('Villalar', 'Villas', 'Виллы'),
     short: L(
@@ -212,7 +212,7 @@ export const PROJECTS = [
       'Villas with a Mediterranean character — natural-stone walls, arched terraces and wrought-iron balustrades — and private pools that look straight out to the open sea.',
       'Виллы в средиземноморском характере — каменная кладка, арочные террасы, кованые ограждения — и собственные бассейны с видом на открытое море.'
     ),
-    gallery: ['nv-pool-sun', 'nv-facade', 'nv-living', 'nv-terrace', 'nv-stairs', 'nv-front', 'nv-entrance', 'nv-gate', 'nv-side', 'villa-pool', 'vl-arches', 'vl-pool-palms', 'vl-terrace-stone'],
+    gallery: ['nv-facade', 'nv-living', 'nv-terrace', 'nv-stairs', 'nv-front', 'nv-entrance', 'nv-gate', 'nv-side', 'villa-pool', 'vl-arches', 'vl-pool-palms', 'vl-terrace-stone'],
   },
   {
     slug: 'asrin-10-11',
