@@ -2023,3 +2023,4 @@ strong { font-weight: 600; }
 .pgrid .pcard__go { width: 42px; height: 42px; }
 @media (max-width: 1024px) { .pgrid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 760px) { .pgrid { grid-template-columns: 1fr; } }
+.nv__more { display: none; }

@@ -685,8 +685,9 @@ ${amenSection(lang)}
     </div>
     <div class="nv__cta" data-reveal>
       <a class="btn btn--wa" href="${wa(tx(UI.waProject, lang).replace('{p}', 'Special Villas — ' + tx(L('yeni villa', 'the new villa', 'новая вилла'), lang)))}" target="_blank" rel="noopener">${ICONS.whatsapp}<span>${tx(L('Villa hakkında sor', 'Ask about the villa', 'Узнать о вилле'), lang)}</span></a>
-      <a class="btn btn--line btn--light" href="#gallery">${tx(L('Tüm fotoğraflar', 'All photos', 'Все фото'), lang)}</a>
+      <a class="btn btn--line btn--light" href="#new-villa" data-nv-all>${tx(L('Villanın tüm fotoğrafları', 'All photos of the villa', 'Все фото виллы'), lang)} · ${5 + p.gallery.filter((n) => n.startsWith('nv-') && !['nv-facade', 'nv-terrace', 'nv-living', 'nv-stairs', 'nv-pool'].includes(n)).length}</a>
     </div>
+    <div class="nv__more">${p.gallery.filter((n) => n.startsWith('nv-') && !['nv-facade', 'nv-terrace', 'nv-living', 'nv-stairs', 'nv-pool'].includes(n)).map((n) => lbFig(n, lang, 'nv', { sizes: '10vw' })).join('')}</div>
   </div>
 </section>`;
   }
@@ -753,11 +754,10 @@ ${factsBar}
 ${specifics}
 <section class="pgal" id="gallery" data-theme="light">
   <div class="wrap">
-    <div class="gal__head"><div>${eyebrow(`${p.gallery.length} ${tx(UI.labels.photoCount, lang)}${isVillas ? ' · ' + tx(L('tüm villalar', 'all villas', 'все виллы'), lang) : ''}`)}<h2 class="h2">${isVillas ? tx(L('Tüm <em>villalarımız</em>', 'All our <em>villas</em>', 'Все наши <em>виллы</em>'), lang) : tx(UI.labels.gallery, lang)}</h2>${isVillas ? `<p class="gal__note">${tx(L('Önce yeni beyaz villamız, ardından taş duvarlı, kemerli teraslı diğer Special Villas.', 'First our new white villa, then the other Special Villas — stone walls, arched terraces and sea-view pools.', 'Сначала — наша новая белая вилла, дальше — другие Special Villas: каменная кладка, арочные террасы и бассейны с видом на море.'), lang)}</p>` : ''}</div></div>
+    ${isVillas ? '' : `<div class="gal__head"><div>${eyebrow(`${p.gallery.length} ${tx(UI.labels.photoCount, lang)}`)}<h2 class="h2">${tx(UI.labels.gallery, lang)}</h2></div></div>`}
     ${isVillas ? (() => {
-      const nvs = p.gallery.filter((n) => n.startsWith('nv-')), rest = p.gallery.filter((n) => !n.startsWith('nv-'));
-      const grp = (label, list) => `<h3 class="gal__sub"><span>${tx(label, lang)}</span><i>${list.length}</i></h3><div class="masonry">${list.map((n) => lbFig(n, lang, p.slug, { sizes: '(max-width: 760px) 92vw, 56vw' })).join('')}</div>`;
-      return grp(L('Yeni villa', 'The new villa', 'Новая вилла'), nvs) + grp(L('Diğer villalar', 'Our other villas', 'Другие виллы'), rest);
+      const rest = p.gallery.filter((n) => !n.startsWith('nv-'));
+      return `<div class="gal__head"><div>${eyebrow(`${rest.length} ${tx(UI.labels.photoCount, lang)}`)}<h2 class="h2">${tx(L('Diğer <em>villalarımız</em>', 'Our other <em>villas</em>', 'Другие <em>виллы</em>'), lang)}</h2><p class="gal__note">${tx(L('Taş duvarlar, kemerli teraslar ve denize bakan havuzlarıyla diğer Special Villas.', 'The other Special Villas — stone walls, arched terraces and sea-view pools.', 'Остальные Special Villas: каменная кладка, арочные террасы и бассейны с видом на море.'), lang)}</p></div></div><div class="masonry">${rest.map((n) => lbFig(n, lang, p.slug, { sizes: '(max-width: 760px) 92vw, 56vw' })).join('')}</div>`;
     })() : `<div class="masonry">${p.gallery.map((n) => lbFig(n, lang, p.slug, { sizes: '(max-width: 760px) 92vw, 56vw' })).join('')}</div>`}
   </div>
 </section>

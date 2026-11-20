@@ -662,3 +662,9 @@
   };
   set(); addEventListener('resize', set); document.fonts && document.fonts.ready.then(set);
 })();
+
+/* v15 — "all photos of the villa" opens the villa lightbox */
+(() => {
+  const b = document.querySelector('[data-nv-all]'); if (!b) return;
+  b.addEventListener('click', (e) => { e.preventDefault(); const first = document.querySelector('.nv .lb'); first && first.click(); });
+})();
