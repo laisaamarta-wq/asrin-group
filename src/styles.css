@@ -1955,3 +1955,4 @@ strong { font-weight: 600; }
 @media (max-width: 760px) { .lg2 { grid-template-columns: 1fr; gap: 2.8rem; margin-top: 3.5rem; } .lg2__eb { font-size: 1.7rem; margin-bottom: 1.3rem; } }
 @media (prefers-reduced-motion: reduce) { .vroute::after, .vroute__stop, .vroute li::before { transition: none !important; } }
 .nv__b img { object-position: 50% 62%; }
+.pintro:has(+ [data-theme="dark"]) { padding-bottom: clamp(3.5rem, 7vw, 6rem); }
