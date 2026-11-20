@@ -858,20 +858,29 @@ ${contactSection(lang)}`;
 // ---------- CONTACT ----------
 export function contactPage(lang) {
   const map = `https://www.google.com/maps?q=${encodeURIComponent(SITE.mapQuery)}&output=embed`;
-  const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SITE.mapQuery)}`;
   const body = `${pageHero(lang, { title: tx(PAGES.contact.title, lang), lead: tx(HOME.contactText, lang), image: 'ac-blue', crumbs: [[null, tx(PAGES.contact.title, lang)]] })}
-<section class="cpage" data-theme="light">
-  <div class="wrap cpage__grid">
-    <div class="cpage__info">
-      <ul class="cways">
-        <li data-reveal><a href="${SITE.phoneHref}"><span class="cways__ic">${ICONS.phone}</span><span><small>${tx(FORM.phone, lang)}</small><b>${SITE.phoneDisplay}</b></span></a></li>
-        <li data-reveal><a href="${wa(tx(UI.waText, lang))}" target="_blank" rel="noopener"><span class="cways__ic cways__ic--wa">${ICONS.whatsapp}</span><span><small>WhatsApp</small><b>${SITE.phoneDisplay}</b></span></a></li>
-        <li data-reveal><a href="mailto:${SITE.email}"><span class="cways__ic">${ICONS.mail}</span><span><small>${tx(FORM.email, lang)}</small><b>${SITE.email}</b></span></a></li>
-        <li data-reveal><a href="${mapLink}" target="_blank" rel="noopener"><span class="cways__ic">${ICONS.pin}</span><span><small>${tx(PAGES.contact.office, lang)}</small><b>${SITE.addressShort}<br>07900 Gazipaşa / Antalya</b></span></a></li>
-      </ul>
-      <div class="map" data-reveal><iframe title="ASRIN GROUP — ${esc(SITE.address)}" src="${map}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+<section class="cpage cp2" data-theme="light">
+  <div class="wrap cp2__grid">
+    <div class="cp2__left">
+      <div class="cp2__card" data-reveal>
+        <p class="eyebrow eyebrow--gold">${tx(L('İletişim', 'Get in touch', 'Связаться с нами'), lang)}</p>
+        <h2 class="cp2__title">${tx(L('Evinizi <em>konuşalım.</em>', 'Let’s talk <em>about your home.</em>', 'Поговорим <em>о вашем доме.</em>'), lang)}</h2>
+        <ul class="cp2__ways">
+          <li><a href="${SITE.phoneHref}"><span class="cp2__ic">${ICONS.phone}</span><span class="cp2__t"><small>${tx(FORM.phone, lang)}</small><b>${SITE.phoneDisplay}</b></span><span class="cp2__go">${ICONS.arrowR}</span></a></li>
+          <li><a href="${wa(tx(UI.waText, lang))}" target="_blank" rel="noopener"><span class="cp2__ic cp2__ic--wa">${ICONS.whatsapp}</span><span class="cp2__t"><small>WhatsApp</small><b>${SITE.phoneDisplay}</b></span><span class="cp2__go">${ICONS.arrowR}</span></a></li>
+          <li><a href="mailto:${SITE.email}"><span class="cp2__ic">${ICONS.mail}</span><span class="cp2__t"><small>${tx(FORM.email, lang)}</small><b>${SITE.email}</b></span><span class="cp2__go">${ICONS.arrowR}</span></a></li>
+        </ul>
+      </div>
+      <div class="cp2__map" data-reveal>
+        <iframe title="ASRIN GROUP — ${esc(SITE.address)}" src="${map}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="cp2__pin">
+          <span class="cp2__ic">${ICONS.pin}</span>
+          <span class="cp2__t"><small>${tx(PAGES.contact.office, lang)}</small><b>${SITE.addressShort}</b><span>07900 Gazipaşa / Antalya</span></span>
+          <a class="cp2__route" href="https://www.google.com/maps/dir/?api=1&amp;destination=${encodeURIComponent(SITE.mapQuery)}" target="_blank" rel="noopener">${tx(L('Yol tarifi', 'Directions', 'Маршрут'), lang)} ${ICONS.arrowR}</a>
+        </div>
+      </div>
     </div>
-    <div class="cpage__form" data-reveal>${contactBlock(lang)}</div>
+    <div class="cp2__form" data-reveal>${contactBlock(lang)}</div>
   </div>
 </section>`;
   return page({ lang, route: 'contact', title: tx(PAGES.contact.title, lang), desc: tx(PAGES.contact.meta, lang), body, current: 'contact', ogImage: 'bl-pool-sunset', jsonld: [crumbsLd(lang, [[tx(PAGES.contact.title, lang), url(lang, 'contact')]])] });
