@@ -1956,3 +1956,16 @@ strong { font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { .vroute::after, .vroute__stop, .vroute li::before { transition: none !important; } }
 .nv__b img { object-position: 50% 62%; }
 .pintro:has(+ [data-theme="dark"]) { padding-bottom: clamp(3.5rem, 7vw, 6rem); }
+
+/* v13 — photo pair: clean, no overlap */
+.flag__duo { grid-template-columns: 7fr 5fr; align-items: stretch; gap: clamp(.6rem, 1.2vw, 1rem); }
+.flag__a, .flag__b { aspect-ratio: auto; margin: 0 !important; height: clamp(320px, 42vw, 620px); border: 0 !important; width: auto !important; position: relative; }
+.flag__duo img { height: 112% !important; }
+.flag__b img { object-position: 50% 35%; }
+@media (max-width: 760px) {
+  .flag__duo { grid-template-columns: 1fr; gap: .6rem; margin-block: 3rem; }
+  .flag__a { height: auto; aspect-ratio: 16 / 10.5; }
+  .flag__b { height: auto; aspect-ratio: 16 / 11; }
+}
+.fm__wa { display: inline-flex; align-items: center; gap: .5rem; }
+.fm__wa .ic { width: 16px; height: 16px; color: #3fbf7f; }
