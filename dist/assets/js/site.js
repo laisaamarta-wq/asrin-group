@@ -412,10 +412,10 @@
         if (map) { if (zoom && to === 'map') { map.style.setProperty('--fx', pts[i][0] + '%'); map.style.setProperty('--fy', pts[i][1] + '%'); map.style.transform = 'scale(1.5)'; map.style.setProperty('--z', '1.5'); } else { map.style.transform = ''; map.style.setProperty('--z', '1'); } }
       };
       hs.forEach((h, i) => h.addEventListener('click', () => setOn(i, true)));
-      items.forEach((h, i) => h.addEventListener('click', () => setOn(i, true)));
+      items.forEach((h, i) => { h.addEventListener('click', () => setOn(i, true)); h.addEventListener('mouseenter', () => setOn(i, true)); });
       setOn(0, false);
       gsap.matchMedia().add('(min-width: 1025px)', () => {
-        const st = ST.create({ trigger: amn, start: 'top top', end: () => '+=' + w.innerHeight * 2.6, pin: '.amn__pin', scrub: true, onUpdate: (s) => setOn(Math.min(items.length - 1, Math.floor(s.progress * items.length)), true), onLeaveBack: () => { if (map) map.style.transform = ''; } });
+        const st = ST.create({ trigger: amn, start: 'top top', end: () => '+=' + w.innerHeight * 1.4, pin: '.amn__pin', scrub: true, onUpdate: (s) => setOn(Math.min(items.length - 1, Math.floor(s.progress * items.length)), true), onLeaveBack: () => { if (map) map.style.transform = ''; } });
         return () => st.kill();
       });
     }

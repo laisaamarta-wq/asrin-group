@@ -2210,3 +2210,9 @@ strong { font-weight: 600; }
   .team2__txt { padding: 1.6rem 1.3rem 1.8rem; }
 }
 .story .stat, .story .stat + .stat { border-top: 0 !important; border-left: 0 !important; }
+
+/* v19 — amenities switch faster */
+.amn__layer { transition: clip-path .65s var(--ease-io); }
+.amn__layer > img, .amn__layer > picture img { transition: transform 3s ease-out; }
+.amn__list li { transition: opacity .25s, padding .35s var(--ease); }
+.amn__ic { transition: background .25s, color .25s; }
