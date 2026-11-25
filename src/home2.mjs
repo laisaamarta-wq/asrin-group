@@ -224,7 +224,7 @@ ${amenSection(lang)}
 
 ${contactSection(lang, { project: city.slug, bg: 'ac-balcony' })}`;
 
-  return page({ lang, route: 'home', title: tx(PAGES.home.title, lang), desc: tx(PAGES.home.meta, lang), body, current: 'home', ogImage: 'ac-hero', bodyClass: 'is-home' });
+  return page({ lang, route: 'home', title: tx(PAGES.home.title, lang), desc: tx(PAGES.home.meta, lang), body, current: 'home', ogImage: 'asrin-group', bodyClass: 'is-home' });
 }
 
 export function lapseSection(lang) {

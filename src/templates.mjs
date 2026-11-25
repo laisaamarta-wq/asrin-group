@@ -41,13 +41,12 @@ function lbFig(name, lang, group, { sizes = '50vw', cls = '', caption } = {}) {
 export const logo = (variant = 'light') => `<svg class="logo logo--${variant}" viewBox="0 0 223 67" role="img" aria-label="ASRIN GROUP"><defs><linearGradient id="lg-${variant}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16AEEA"/><stop offset="1" stop-color="#1F5E9C"/></linearGradient></defs><path d="${LOGO_MARK}" fill="url(#lg-${variant})" fill-rule="evenodd"/><path class="logo__asrin" transform="translate(81 0)" d="${LOGO_ASRIN}" fill-rule="evenodd"/><path class="logo__group" transform="translate(81 38)" d="${LOGO_GROUP}" fill-rule="evenodd"/></svg>`;
 
 // ---------- Head ----------
-function head({ lang, title, desc, path, alternates, ogImage = 'ac-hero', jsonld = [], noindex = false }) {
+function head({ lang, title, desc, path, alternates, ogImage = 'asrin-group', jsonld = [], noindex = false }) {
   const t = title.includes('ASRIN') ? title : `${title} · ASRIN GROUP`;
-  const og = full(ogImage);
   const alt = alternates ? LANGS.map((l) => `<link rel="alternate" hreflang="${l}" href="${SITE.url}${alternates[l]}">`).join('') + `<link rel="alternate" hreflang="x-default" href="${SITE.url}${alternates.tr}">` : '';
   const org = {
     '@context': 'https://schema.org', '@type': 'HomeAndConstructionBusiness', name: 'ASRIN GROUP', alternateName: 'ASRIN İNŞAAT',
-    url: SITE.url, logo: `${SITE.url}/assets/brand/asrin-group-logo.svg`, image: `${SITE.url}${og}`, telephone: SITE.phone, email: SITE.email, foundingDate: '1990',
+    url: SITE.url, logo: `${SITE.url}/assets/brand/icon-512.png`, image: `${SITE.url}/assets/og/${ogImage}.jpg`, telephone: SITE.phone, email: SITE.email, foundingDate: '1990',
     address: { '@type': 'PostalAddress', streetAddress: 'Pazarcı Mah. Uğur Mumcu Cad. Asrın Apt. 101/1', addressLocality: 'Gazipaşa', addressRegion: 'Antalya', postalCode: '07900', addressCountry: 'TR' },
     areaServed: 'Gazipaşa, Antalya',
   };
@@ -68,12 +67,20 @@ ${alt}
 <meta property="og:title" content="${esc(t)}">
 <meta property="og:description" content="${esc(String(desc).replace(/<[^>]+>/g, ''))}">
 <meta property="og:url" content="${SITE.url}${path}">
-<meta property="og:image" content="${SITE.url}${og}">
+<meta property="og:image" content="${SITE.url}/assets/og/${ogImage}.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="${esc(t)}">
 <meta property="og:locale" content="${LANG_META[lang].locale}">
 ${LANGS.filter((l) => l !== lang).map((l) => `<meta property="og:locale:alternate" content="${LANG_META[l].locale}">`).join('')}
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(t)}">
+<meta name="twitter:description" content="${esc(String(desc).replace(/<[^>]+>/g, ''))}">
+<meta name="twitter:image" content="${SITE.url}/assets/og/${ogImage}.jpg">
 <meta name="theme-color" content="#0B1B2E">
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/cormorant-${lang === 'ru' ? 'cyrillic' : 'latin'}-300-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/manrope-${lang === 'ru' ? 'cyrillic' : 'latin'}-400-normal.woff2" as="font" type="font/woff2" crossorigin>

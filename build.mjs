@@ -35,6 +35,10 @@ async function images() {
     if (!widths.length || meta.width < WIDTHS[0]) widths.push(meta.width);
     if (widths[widths.length - 1] < meta.width && meta.width < 2400 && meta.width - widths[widths.length - 1] > 200) widths.push(meta.width);
     manifest[name] = { w: meta.width, h: meta.height, widths };
+    // social preview: 1200x630 JPEG (works in Instagram, WhatsApp, Telegram, iMessage, Facebook)
+    const ogOut = path.join(DIST, 'assets/og'); await ensure(ogOut);
+    const ogFile = path.join(ogOut, `${name}.jpg`);
+    if (cache[name] !== key || !fss.existsSync(ogFile)) await sharp(src).resize(1200, 630, { fit: 'cover', position: 'attention' }).jpeg({ quality: 82, mozjpeg: true }).toFile(ogFile);
     const done = cache[name] === key && widths.every((w) => fss.existsSync(path.join(out, `${name}-${w}.webp`)));
     if (done) return;
     await Promise.all(widths.map((w) => sharp(src).resize({ width: w, withoutEnlargement: true }).webp({ quality: name === 'ac-hero' ? 82 : (w > 1600 ? 74 : 78), effort: 5, smartSubsample: true }).toFile(path.join(out, `${name}-${w}.webp`))));
@@ -81,6 +85,8 @@ async function copyAssets() {
   const fav = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -4 92 75"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16AEEA"/><stop offset="1" stop-color="#1F5E9C"/></linearGradient></defs><rect x="-6" y="-4" width="92" height="75" rx="14" fill="#0B1B2E"/><path d="${LOGO_MARK}" fill="url(#g)" fill-rule="evenodd"/></svg>`;
   await fs.writeFile(path.join(a, 'brand/favicon.svg'), fav);
   await sharp(Buffer.from(fav)).resize(180, 180).png().toFile(path.join(a, 'brand/apple-touch-icon.png'));
+  await sharp(Buffer.from(fav)).resize(32, 32).png().toFile(path.join(a, 'brand/favicon-32.png'));
+  await sharp(Buffer.from(fav)).resize(512, 512).png().toFile(path.join(a, 'brand/icon-512.png'));
 }
 
 async function write(rel, html) {
@@ -94,6 +100,15 @@ async function main() {
   const manifest = await images();
   T.setImageManifest(manifest);
   await copyAssets();
+  // branded share card for the home pages and the bare domain
+  {
+    const logo = await fs.readFile(path.join(DIST, 'assets/brand/asrin-group-logo-light.svg'));
+    const shade = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset=".45" stop-color="#0B1B2E" stop-opacity="0"/><stop offset="1" stop-color="#0B1B2E" stop-opacity=".82"/></linearGradient></defs><rect width="1200" height="630" fill="url(#g)"/></svg>');
+    const mark = await sharp(logo, { density: 300 }).resize({ width: 330 }).png().toBuffer();
+    await sharp(path.join(SRC_MEDIA, 'ac-hero.jpg')).resize(1200, 630, { fit: 'cover', position: 'attention' })
+      .composite([{ input: shade }, { input: mark, left: 64, top: 630 - 64 - Math.round(330 * 67 / 223) }])
+      .jpeg({ quality: 84, mozjpeg: true }).toFile(path.join(DIST, 'assets/og/asrin-group.jpg'));
+  }
   const urls = [];
   for (const lang of LANGS) {
     const pages = [
@@ -114,7 +129,7 @@ async function main() {
   }
   await write('404.html', T.notFoundPage('tr'));
   // root: language chooser / redirect
-  await write('index.html', `<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>ASRIN GROUP</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="canonical" href="${SITE.url}/tr/">${LANGS.map((l) => `<link rel="alternate" hreflang="${l}" href="${SITE.url}/${l}/">`).join('')}<link rel="alternate" hreflang="x-default" href="${SITE.url}/tr/"><meta name="robots" content="noindex"><script>(function(){var l;try{l=localStorage.getItem('asrin-lang')}catch(e){}if(!l){var n=(navigator.languages||[navigator.language||'tr']).join(',').toLowerCase();l=/^ru|,ru/.test(n)?'ru':/^tr|,tr/.test(n)?'tr':/^en|,en/.test(n)?'en':'tr'}location.replace('/'+(['tr','en','ru'].indexOf(l)>-1?l:'tr')+'/')})();</script><noscript><meta http-equiv="refresh" content="0;url=/tr/"></noscript><style>body{background:#0B1B2E}</style></head><body></body></html>`);
+  await write('index.html', `<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>ASRIN GROUP</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="canonical" href="${SITE.url}/tr/">${LANGS.map((l) => `<link rel="alternate" hreflang="${l}" href="${SITE.url}/${l}/">`).join('')}<link rel="alternate" hreflang="x-default" href="${SITE.url}/tr/"><meta name="robots" content="noindex"><meta name="description" content="ASRIN GROUP / ASRIN İNŞAAT — Gazipaşa, Antalya. 1990'dan beri Avrupa standartlarında konut: Asrin City, Blue Lagoon Village."><meta property="og:type" content="website"><meta property="og:site_name" content="ASRIN GROUP"><meta property="og:title" content="ASRIN GROUP — Gazipaşa, Antalya"><meta property="og:description" content="1990'dan beri Gazipaşa'da Avrupa standartlarında konut. Asrin City, Blue Lagoon Village ve tamamlanan projelerimiz."><meta property="og:url" content="${SITE.url}/"><meta property="og:image" content="${SITE.url}/assets/og/asrin-group.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:type" content="image/jpeg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${SITE.url}/assets/og/asrin-group.jpg"><link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml"><link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png"><script>(function(){var l;try{l=localStorage.getItem('asrin-lang')}catch(e){}if(!l){var n=(navigator.languages||[navigator.language||'tr']).join(',').toLowerCase();l=/^ru|,ru/.test(n)?'ru':/^tr|,tr/.test(n)?'tr':/^en|,en/.test(n)?'en':'tr'}location.replace('/'+(['tr','en','ru'].indexOf(l)>-1?l:'tr')+'/')})();</script><noscript><meta http-equiv="refresh" content="0;url=/tr/"></noscript><style>body{background:#0B1B2E}</style></head><body></body></html>`);
   // sitemap with hreflang
   const groups = {};
   for (const x of urls) (groups[`${x.route}|${x.sub}`] ||= {})[x.lang] = x.u;
