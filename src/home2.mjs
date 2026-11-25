@@ -2,7 +2,7 @@
 import { L, SITE, UI, PROJECTS, CITY, LAGOON, GAZIPASA, ABOUT, STATS, PILLARS, HOME, HOME2, PAGES } from './content.mjs';
 import { ALT } from './alts.mjs';
 import { ICONS } from './svg.mjs';
-import { img, url, page, IMG, logo } from './templates.mjs';
+import { img, url, page, IMG, logo, roomCard } from './templates.mjs';
 
 const tx = (v, lang) => (v && typeof v === 'object' && 'tr' in v ? v[lang] : v);
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -165,10 +165,7 @@ ${amenSection(lang)}
     <dl class="lagoon__stats">${LAGOON.stats.map((st) => `<div data-reveal><dd>${st.v}</dd><dt>${tx(st.l, lang)}</dt></div>`).join('')}</dl>
   </div>
   <div class="lagoon__rooms wrap">
-    ${LAGOON.rooms.map((r) => `<a class="room" data-reveal href="${pUrl(lang, lagoon.slug)}" data-cursor="${esc(tx(HOME2.view, lang))}">
-      <div class="room__media">${img(r.img, lang, { sizes: '(max-width: 760px) 86vw, 30vw' })}</div>
-      <h3>${tx(r.name, lang)}</h3><p>${tx(r.spec, lang)}</p>
-    </a>`).join('')}
+    ${LAGOON.rooms.map((r, i) => roomCard(r, lang, i)).join('')}
   </div>
   <div class="lagoon__strip">
     ${['bl-lagoon-topdown', 'bl-pool-sunset', 'bl-lagoon-stairs', 'bl-terrace-sunset'].map((n) => `<figure data-clip>${img(n, lang, { sizes: '(max-width: 760px) 50vw, 25vw' })}</figure>`).join('')}

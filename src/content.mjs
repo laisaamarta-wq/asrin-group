@@ -311,9 +311,9 @@ export const LAGOON = {
     { v: '300 m', l: L('lagüne', 'to the lagoon', 'до лагуны') },
   ],
   rooms: [
-    { name: L('Romantik Çift Kişilik Oda', 'Romantic Double Room', 'Романтический номер'), img: 'bl-romantic-room', spec: L('30 m² · 2 kişi · jakuzi · deniz manzarası', '30 m² · for two · whirlpool bath · sea view', '30 м² · для двоих · джакузи · вид на море') },
-    { name: L('Villa Garden', 'Villa Garden', 'Вилла Garden'), img: 'bl-room-sea-wide', spec: L('≈105 m² · 2 yatak odası · özel bahçe · 5 kişiye kadar', '≈105 m² · 2 bedrooms · private garden · up to 5 guests', '≈105 м² · 2 спальни · свой сад · до 5 гостей') },
-    { name: L('Villa Terrace', 'Villa Terrace', 'Вилла Terrace'), img: 'bl-room-terrace-view', spec: L('≈135 m² · 3 yatak odası · deniz terası · 6 kişiye kadar', '≈135 m² · 3 bedrooms · sea terrace · up to 6 guests', '≈135 м² · 3 спальни · терраса у моря · до 6 гостей') },
+    { name: L('Romantik Çift Kişilik Oda', 'Romantic Double Room', 'Романтический номер'), img: 'blr-romantic-1', gallery: ['blr-romantic-1', 'blr-romantic-2', 'blr-romantic-3', 'blr-romantic-4', 'blr-romantic-5', 'blr-romantic-6', 'blr-romantic-7', 'bl-pool-sunset', 'bl-lagoon-stairs'], spec: L('30 m² · 2 kişi · jakuzi · deniz manzarası', '30 m² · for two · whirlpool bath · sea view', '30 м² · для двоих · джакузи · вид на море') },
+    { name: L('Villa Garden', 'Villa Garden', 'Вилла Garden'), img: 'blr-garden-1', gallery: ['blr-garden-1', 'blr-garden-2', 'blr-garden-3', 'blr-garden-4', 'blr-garden-5', 'blr-garden-6', 'bl-pool-sunset', 'bl-lagoon-stairs'], spec: L('≈105 m² · 2 yatak odası · özel bahçe · 4 kişiye kadar', '≈105 m² · 2 bedrooms · private garden · up to 4 guests', '≈105 м² · 2 спальни · свой сад · до 4 гостей') },
+    { name: L('Villa Terrace', 'Villa Terrace', 'Вилла Terrace'), img: 'blr-terrace-1', gallery: ['blr-terrace-1', 'blr-terrace-2', 'blr-terrace-3', 'blr-terrace-4', 'blr-terrace-5', 'blr-terrace-6', 'bl-pool-sunset', 'bl-lagoon-stairs'], spec: L('≈135 m² · 3 yatak odası · özel teras · 6 kişiye kadar', '≈135 m² · 3 bedrooms · private terrace · up to 6 guests', '≈135 м² · 3 спальни · своя терраса · до 6 гостей') },
   ],
   distances: [
     { v: '300 m', l: L('Lagün', 'The lagoon', 'Лагуна') },

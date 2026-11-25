@@ -37,6 +37,19 @@ function lbFig(name, lang, group, { sizes = '50vw', cls = '', caption } = {}) {
   return `<a class="lb ${cls}" href="${full(name)}" data-lightbox="${group}" data-caption="${esc(cap)}" data-w="${IMG[name].w}" data-h="${IMG[name].h}">${img(name, lang, { sizes })}<span class="lb__zoom" aria-hidden="true">${ICONS.plus}</span></a>`;
 }
 
+
+// Blue Lagoon room card: main photo + three thumbnails, all open one lightbox per room
+export function roomCard(r, lang, i) {
+  const g = r.gallery || [r.img], grp = `room-${i}`, rest = g.length - 4;
+  const count = tx(L(`${g.length} fotoğraf`, `${g.length} photos`, `${g.length} фото`), lang);
+  return `<article class="room room--g" data-reveal>
+    <a class="room__media lb" href="${full(g[0])}" data-lightbox="${grp}" data-caption="${esc(tx(ALT[g[0]], lang))}" data-w="${IMG[g[0]].w}" data-h="${IMG[g[0]].h}">${img(g[0], lang, { sizes: '(max-width: 760px) 90vw, 30vw' })}<span class="room__count">${ICONS.plus}${count}</span></a>
+    <div class="room__thumbs">${g.slice(1, 4).map((n, k) => `<a class="lb" href="${full(n)}" data-lightbox="${grp}" data-caption="${esc(tx(ALT[n], lang))}" data-w="${IMG[n].w}" data-h="${IMG[n].h}">${img(n, lang, { sizes: '(max-width: 760px) 30vw, 10vw' })}${k === 2 && rest > 0 ? `<span>+${rest}</span>` : ''}</a>`).join('')}</div>
+    <div class="room__rest">${g.slice(4).map((n) => `<a href="${full(n)}" data-lightbox="${grp}" data-caption="${esc(tx(ALT[n], lang))}" data-w="${IMG[n].w}" data-h="${IMG[n].h}"></a>`).join('')}</div>
+    <h3>${tx(r.name, lang)}</h3><p>${tx(r.spec, lang)}</p>
+  </article>`;
+}
+
 // ---------- Logo ----------
 export const logo = (variant = 'light') => `<svg class="logo logo--${variant}" viewBox="0 0 223 67" role="img" aria-label="ASRIN GROUP"><defs><linearGradient id="lg-${variant}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16AEEA"/><stop offset="1" stop-color="#1F5E9C"/></linearGradient></defs><path d="${LOGO_MARK}" fill="url(#lg-${variant})" fill-rule="evenodd"/><path class="logo__asrin" transform="translate(81 0)" d="${LOGO_ASRIN}" fill-rule="evenodd"/><path class="logo__group" transform="translate(81 38)" d="${LOGO_GROUP}" fill-rule="evenodd"/></svg>`;
 
@@ -457,10 +470,7 @@ export function homePage(lang) {
     <dl class="lagoon__stats">${LAGOON.stats.map((s) => `<div data-reveal><dd>${s.v}</dd><dt>${tx(s.l, lang)}</dt></div>`).join('')}</dl>
   </div>
   <div class="lagoon__rooms wrap">
-    ${LAGOON.rooms.map((r) => `<article class="room" data-reveal>
-      <div class="room__media">${img(r.img, lang, { sizes: '(max-width: 760px) 86vw, 30vw' })}</div>
-      <h3>${tx(r.name, lang)}</h3><p>${tx(r.spec, lang)}</p>
-    </article>`).join('')}
+    ${LAGOON.rooms.map((r, i) => roomCard(r, lang, i)).join('')}
   </div>
   <div class="lagoon__strip">
     ${['bl-lagoon-topdown', 'bl-pool-sunset', 'bl-lagoon-stairs', 'bl-terrace-sunset'].map((n) => `<figure data-clip>${img(n, lang, { sizes: '(max-width: 760px) 50vw, 25vw' })}</figure>`).join('')}
@@ -715,7 +725,7 @@ ${amenSection(lang)}
   <div class="wrap">
     <h2 class="h2" data-split>${tx(UI.labels.rooms, lang)}</h2>
     <div class="lagoon__rooms lagoon__rooms--light">
-      ${LAGOON.rooms.map((r) => `<article class="room" data-reveal><div class="room__media">${img(r.img, lang, { sizes: '(max-width: 760px) 86vw, 30vw' })}</div><h3>${tx(r.name, lang)}</h3><p>${tx(r.spec, lang)}</p></article>`).join('')}
+      ${LAGOON.rooms.map((r, i) => roomCard(r, lang, i)).join('')}
     </div>
   </div>
   <div class="wrap lg2">
