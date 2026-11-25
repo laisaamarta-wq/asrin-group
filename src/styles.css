@@ -2216,3 +2216,11 @@ strong { font-weight: 600; }
 .amn__layer > img, .amn__layer > picture img { transition: transform 3s ease-out; }
 .amn__list li { transition: opacity .25s, padding .35s var(--ease); }
 .amn__ic { transition: background .25s, color .25s; }
+/* reel captions: larger and clearer */
+.reel--dark figcaption { font-size: 1.02rem; line-height: 1.45; color: rgba(251, 248, 242, .86); max-width: 44ch; }
+.reel--dark figcaption span { font-size: 1.4rem; }
+.reel__hint { font-size: .8rem; }
+@media (max-width: 760px) {
+  .reel--dark figcaption { font-size: 1.12rem; max-width: 82vw; gap: .8rem; }
+  .reel--dark figcaption span { font-size: 1.5rem; }
+}
