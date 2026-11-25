@@ -57,6 +57,7 @@ function head({ lang, title, desc, path, alternates, ogImage = 'asrin-group', js
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="format-detection" content="telephone=no">
+<meta name="google-site-verification" content="nMxQEJxO6FgRMxFvoRx2lxK6jQSLlZCEtx3bbdWh3zg">
 <title>${esc(t)}</title>
 <meta name="description" content="${esc(String(desc).replace(/<[^>]+>/g, ''))}">
 ${noindex ? '<meta name="robots" content="noindex">' : ''}
