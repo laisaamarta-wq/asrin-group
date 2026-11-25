@@ -38,6 +38,11 @@ function lbFig(name, lang, group, { sizes = '50vw', cls = '', caption } = {}) {
 }
 
 
+const KEY_IC = {
+  guest: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="5.2" r="2.5"/><path d="M3 14c.6-2.8 2.6-4.3 5-4.3s4.4 1.5 5 4.3"/></svg>',
+  leaf: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13.2c0-6 4-9.6 10.2-10.2 0 6.2-3.6 10.2-10.2 10.2z"/><path d="M3 13.2l5.6-5.6"/></svg>',
+  sun: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12h13"/><path d="M4.4 12a3.6 3.6 0 0 1 7.2 0"/><path d="M8 3.6v1.6M3.5 5.6l1.1 1.1M12.5 5.6l-1.1 1.1"/></svg>',
+};
 // Blue Lagoon room card: main photo + three thumbnails, all open one lightbox per room
 export function roomCard(r, lang, i) {
   const g = r.gallery || [r.img], grp = `room-${i}`, rest = g.length - 4;
@@ -46,7 +51,7 @@ export function roomCard(r, lang, i) {
     <a class="room__media lb" href="${full(g[0])}" data-lightbox="${grp}" data-caption="${esc(tx(ALT[g[0]], lang))}" data-w="${IMG[g[0]].w}" data-h="${IMG[g[0]].h}">${img(g[0], lang, { sizes: '(max-width: 760px) 90vw, 30vw' })}<span class="room__count">${ICONS.plus}${count}</span></a>
     <div class="room__thumbs">${g.slice(1, 4).map((n, k) => `<a class="lb" href="${full(n)}" data-lightbox="${grp}" data-caption="${esc(tx(ALT[n], lang))}" data-w="${IMG[n].w}" data-h="${IMG[n].h}">${img(n, lang, { sizes: '(max-width: 760px) 30vw, 10vw' })}${k === 2 && rest > 0 ? `<span>+${rest}</span>` : ''}</a>`).join('')}</div>
     <div class="room__rest">${g.slice(4).map((n) => `<a href="${full(n)}" data-lightbox="${grp}" data-caption="${esc(tx(ALT[n], lang))}" data-w="${IMG[n].w}" data-h="${IMG[n].h}"></a>`).join('')}</div>
-    <h3>${tx(r.name, lang)}</h3><p>${tx(r.spec, lang)}</p>
+    <h3>${tx(r.name, lang)}</h3>${r.keys ? `<ul class="room__keys">${r.keys.map(([ic, t]) => `<li>${KEY_IC[ic]}${tx(t, lang)}</li>`).join('')}</ul>` : ''}<p>${tx(r.spec, lang)}</p>
   </article>`;
 }
 

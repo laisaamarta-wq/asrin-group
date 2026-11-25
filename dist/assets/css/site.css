@@ -2243,3 +2243,9 @@ strong { font-weight: 600; }
   .room--g h3 { margin-top: .9rem; }
   .room--g p { font-size: 1.02rem; }
 }
+/* room key facts: guests and garden / terrace as chips */
+.room__keys { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: .8rem 0 .2rem; padding: 0; }
+.room__keys li { display: inline-flex; align-items: center; gap: .45rem; padding: .42rem .85rem .42rem .7rem; border-radius: 999px; background: var(--navy-900); color: var(--ivory-50); font-size: .8rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+.room__keys svg { flex: none; }
+.lagoon .room__keys li { background: rgba(251, 248, 242, .12); border: 1px solid rgba(251, 248, 242, .28); color: var(--ivory-50); }
+.lagoon .room__keys li:first-child { background: var(--ivory-50); border-color: var(--ivory-50); color: var(--navy-900); }
