@@ -165,14 +165,14 @@ export const PROJECTS = [
     location: L('Koru Mah., Gazipaşa', 'Koru, Gazipaşa', 'Кору, Газипаша'),
     type: L('Butik konaklama · villalar', 'Boutique stay · villas', 'Бутик-отель · виллы'),
     short: L(
-      'Yeşil bir yamaçta altı ev, yedi oda, denize bakan havuz ve 300 metre aşağıda kendi lagünü.',
-      'Six houses on a green hillside, seven rooms, a pool above the sea and its own lagoon 300 m below.',
-      'Шесть домов на зелёном склоне, семь номеров, бассейн над морем и своя лагуна в 300 метрах ниже.'
+      'Yeşil bir yamaçta altı ev, on oda, denize bakan havuz ve 300 metre aşağıda kendi lagünü.',
+      'six houses on a green hillside, ten rooms, a pool above the sea and its own lagoon 300 m below.',
+      'Шесть домов на зелёном склоне, десять номеров, бассейн над морем и своя лагуна в 300 метрах ниже.'
     ),
     intro: L(
-      'Gazipaşa\'nın hemen dışında, muz teraslarıyla çevrili yeşil bir yamaçta altı krem rengi ev. <strong>Yedi oda, denizin üzerinde bir havuz</strong> ve 300 metre aşağıda kendine ait küçük bir lagün.',
-      'Just outside Gazipaşa, six cream houses stand on a green hillside among banana terraces. <strong>Seven rooms, one pool above the sea</strong> and a small lagoon of its own, 300 m below.',
-      'Сразу за Газипашей, на зелёном склоне среди банановых террас, стоят шесть светлых домов. <strong>Семь номеров, бассейн над морем</strong> и собственная маленькая лагуна в 300 метрах ниже.'
+      'Gazipaşa\'nın hemen dışında, muz teraslarıyla çevrili yeşil bir yamaçta altı krem rengi ev. <strong>On oda, denizin üzerinde bir havuz</strong> ve 300 metre aşağıda kendine ait küçük bir lagün.',
+      'Just outside Gazipaşa, six cream houses stand on a green hillside among banana terraces. <strong>Ten rooms, one pool above the sea</strong> and a small lagoon of its own, 300 m below.',
+      'Сразу за Газипашей, на зелёном склоне среди банановых террас, стоят шесть светлых домов. <strong>Десять номеров, бассейн над морем</strong> и собственная маленькая лагуна в 300 метрах ниже.'
     ),
     gallery: ['bl-approach', 'bl-villas-aerial', 'bl-coast-aerial', 'bl-pool-sunset', 'bl-pool-sea', 'bl-villa-garden', 'bl-lagoon-topdown', 'bl-lagoon-stairs', 'bl-rock-view', 'bl-terrace-sunset', 'bl-retreat-terrace', 'bl-romantic-room', 'bl-room-sea-wide', 'bl-room-terrace-view', 'bl-room-view', 'bl-twin-room'],
   },
