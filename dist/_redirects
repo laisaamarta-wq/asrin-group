@@ -1,0 +1,14 @@
+/index.php / 301
+/tr/sayfa/* /tr/kurumsal/ 301
+/tr/kadromuz /tr/kurumsal/#team 301
+/tr/projeler/planlanmis-projeler-87 /tr/projeler/#planned 301
+/tr/projeler/yapimda-olan-projeler-95 /tr/projeler/#building 301
+/tr/projeler/tamamlanmis-projeler-97 /tr/projeler/#completed 301
+/tr/proje/asrin-city-gazipasa-98 /tr/projeler/asrin-city-gazipasa/ 301
+/tr/proje/asrin10-11finish-on-2017-99 /tr/projeler/asrin-10-11/ 301
+/tr/proje/special-villa-s-100 /tr/projeler/special-villas/ 301
+/tr/proje/asrin-town-15-finished-02-01-2020-96 /tr/projeler/asrin-town-15/ 301
+/tr/proje/asrin-7-8-finished-on-2015-97 /tr/projeler/asrin-7-8/ 301
+/tr/galeri/* /tr/ 301
+/en/gallery/* /en/ 301
+/ru/galereya/* /ru/ 301

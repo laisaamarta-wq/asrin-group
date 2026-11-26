@@ -162,6 +162,13 @@ async function main() {
     ],
   };
   await write('vercel.json', JSON.stringify(vercel, null, 2));
+  // Cloudflare Pages: the same redirects and headers in its own format
+  const cfSrc = (x) => x.replace(/:slug\*/g, '*');
+  await write('_redirects', vercel.redirects.map((r) => `${cfSrc(r.source)} ${r.destination} ${r.permanent ? 301 : 302}`).join('\n') + '\n');
+  await write('_headers', [
+    '/assets/*', '  Cache-Control: public, max-age=31536000, immutable', '',
+    '/*', '  X-Content-Type-Options: nosniff', '  Referrer-Policy: strict-origin-when-cross-origin', '',
+  ].join('\n'));
   console.log(`Built ${urls.length} pages, ${Object.keys(manifest).length} images, v=${V}`);
 }
 main().catch((e) => { console.error(e); process.exit(1); });
